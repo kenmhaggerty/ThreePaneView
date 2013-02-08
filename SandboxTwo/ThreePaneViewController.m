@@ -169,10 +169,11 @@
     
     self.containerView.frame = CGRectMake(0, OVERHANG_VERTICAL-self.view.frame.size.height-CONTAINER_VIEW_TOP_BOTTOM_BORDER, self.view.frame.size.width, 2*(self.view.frame.size.height+CONTAINER_VIEW_TOP_BOTTOM_BORDER)-OVERHANG_VERTICAL);
     self.containerViewIsBeingMoved = NO;
-    [self.containerView setClipsToBounds:YES];
-    self.containerView.layer.shadowOffset = CGSizeMake(0, 10);
-    self.containerView.layer.shadowRadius = 10;
-    self.containerView.layer.shadowOpacity = 0.5;
+    [self.containerView setClipsToBounds:NO];
+    self.containerView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.containerView.layer.shadowOffset = CGSizeMake(0.0f, 10.0f);
+    self.containerView.layer.shadowOpacity = 0.75f;
+    self.containerView.layer.shadowRadius = 10.0f;
     self.containerView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.containerView.bounds].CGPath;
     
     // SIDE, MAIN, AND TOP VIEW CONTROLLERS //
@@ -189,6 +190,12 @@
     [self setSideView:self.sideViewController.view];
     [self.view bringSubviewToFront:self.containerView];
     [self setCanViewSideView:YES];
+    [self.sideView setClipsToBounds:NO];
+    self.sideView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.sideView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.sideView.layer.shadowOpacity = 0.5f;
+    self.sideView.layer.shadowRadius = 7.5f;
+    self.sideView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.sideView.bounds].CGPath;
     
     self.mainViewSnapLocationDefault = CGPointMake(self.containerView.center.x, self.containerView.center.y);
     self.mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:MAINVIEW_CONTROLLER_ID];
@@ -642,6 +649,7 @@
 - (void)layoutPaneViews
 {
     self.sideView.frame = CGRectMake(0, 0, self.view.frame.size.width-OVERHANG_HORIZONTAL, self.view.frame.size.height);
+    self.sideView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.sideView.bounds].CGPath;
     self.mainView.frame = CGRectMake(0, CONTAINER_VIEW_TOP_BOTTOM_BORDER+self.view.frame.size.height-OVERHANG_VERTICAL, self.view.frame.size.width, self.view.frame.size.height);
     self.topView.frame = CGRectMake(0, CONTAINER_VIEW_TOP_BOTTOM_BORDER, self.view.frame.size.width, self.view.frame.size.height);
     self.buttonSideView.frame = CGRectMake(0, CONTAINER_VIEW_TOP_BOTTOM_BORDER+self.view.frame.size.height-0.5*(OVERHANG_VERTICAL+self.buttonSideView.frame.size.height), self.buttonSideView.frame.size.width, self.buttonSideView.frame.size.height);
