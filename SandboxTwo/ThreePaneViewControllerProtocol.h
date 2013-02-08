@@ -8,16 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "ThreePaneChildViewProtocol.h"
-#import "ThreePaneMainViewProtocol.h"
 
 @protocol ThreePaneChildViewProtocol;
-@protocol ThreePaneMainViewProtocol;
 
 @protocol ThreePaneViewControllerProtocol <NSObject>
 @property (nonatomic) BOOL canViewMainView;
 @property (nonatomic) BOOL canViewTopView;
 @property (nonatomic) BOOL canViewSideView;
-- (id)initWithMainVC:(UIViewController <ThreePaneMainViewProtocol> *)mainVC topVC:(UIViewController <ThreePaneChildViewProtocol> *)topVC sideVC:(UIViewController <ThreePaneChildViewProtocol> *)sideVC;
+- (id)initWithMainVC:(UIViewController <ThreePaneChildViewProtocol> *)mainVC topVC:(UIViewController <ThreePaneChildViewProtocol> *)topVC sideVC:(UIViewController <ThreePaneChildViewProtocol> *)sideVC;
 - (void)viewMainView;
 - (void)viewTopView;
 - (void)viewSideView;

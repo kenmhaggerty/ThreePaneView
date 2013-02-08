@@ -52,7 +52,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7D65902516C05B5C004D5005 /* ThreePaneMainViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreePaneMainViewProtocol.h; sourceTree = "<group>"; };
 		7D65902616C072F7004D5005 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../../Woodbox/Woodbox/background.png; sourceTree = "<group>"; };
 		7D65902716C072F7004D5005 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background@2x.png"; path = "../../Woodbox/Woodbox/background@2x.png"; sourceTree = "<group>"; };
 		7D65902816C072F7004D5005 /* NSTexturedFullScreenBackgroundColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NSTexturedFullScreenBackgroundColor.png; path = ../../Woodbox/Woodbox/NSTexturedFullScreenBackgroundColor.png; sourceTree = "<group>"; };
@@ -109,7 +108,7 @@
 		7DF5D52316BCA4EE00AFDAD0 /* SideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideViewController.h; sourceTree = "<group>"; };
 		7DF5D52416BCA4EE00AFDAD0 /* SideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideViewController.m; sourceTree = "<group>"; };
 		7DF5D52616BCB7E300AFDAD0 /* ThreePaneViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreePaneViewControllerProtocol.h; sourceTree = "<group>"; };
-		7DF5D52716BDA47C00AFDAD0 /* ThreePaneViewChildProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreePaneViewChildProtocol.h; sourceTree = "<group>"; };
+		7DF5D52716BDA47C00AFDAD0 /* ThreePaneChildViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreePaneChildViewProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,8 +172,7 @@
 				7DF5D4D116BC68E000AFDAD0 /* SandboxTwoAppDelegate.m */,
 				7DF5D4D916BC68E000AFDAD0 /* MainStoryboard.storyboard */,
 				7DF5D52616BCB7E300AFDAD0 /* ThreePaneViewControllerProtocol.h */,
-				7DF5D52716BDA47C00AFDAD0 /* ThreePaneViewChildProtocol.h */,
-				7D65902516C05B5C004D5005 /* ThreePaneMainViewProtocol.h */,
+				7DF5D52716BDA47C00AFDAD0 /* ThreePaneChildViewProtocol.h */,
 				7DF5D4DC16BC68E000AFDAD0 /* ThreePaneViewController.h */,
 				7DF5D4DD16BC68E000AFDAD0 /* ThreePaneViewController.m */,
 				7DF5D51D16BCA4AA00AFDAD0 /* TopViewController.h */,

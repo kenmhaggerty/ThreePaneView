@@ -10,12 +10,13 @@
 
 // TO DO:
 // [_] Adjust size and layouts if nil-ing or un-nil-ing
+// [_] Add in fade out function option when removing view controller
+// [_] Add in animate away function when removing view controller
 
 #pragma mark - // IMPORTS (Private) //
 
 #import "ThreePaneViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "CustomButton.h"
 #import "CPAnimationStep.h"
 #import "CPAnimationProgram.h"
 #import "CPAnimationSequence.h"
@@ -34,15 +35,13 @@
 #define ANIMATION_SLOW 1.5
 //#define STATUS_BAR_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 
-@interface ThreePaneViewController () <CustomButtonDelegate>
+@interface ThreePaneViewController ()
 @property (nonatomic, strong) IBOutlet UIView *mainView;
 @property (nonatomic, strong) CustomButton *lockView;
 @property (nonatomic, strong) IBOutlet UIView *topView;
 @property (nonatomic, strong) IBOutlet UIView *sideView;
 @property (nonatomic, strong) IBOutlet UIView *containerView;
 @property (nonatomic) BOOL containerViewIsBeingMoved;
-@property (nonatomic, strong) IBOutlet CustomButton *buttonTopView;
-@property (nonatomic, strong) IBOutlet CustomButton *buttonSideView;
 @property (nonatomic) CGPoint mainViewSnapLocationDefault;
 @property (nonatomic) CGPoint mainViewSnapLocationVertical;
 @property (nonatomic) CGPoint mainViewSnapLocationHorizontal;
@@ -61,6 +60,8 @@
 @synthesize mainViewController = _mainViewController;
 @synthesize topViewController = _topViewController;
 @synthesize sideViewController = _sideViewController;
+@synthesize buttonTopView = _buttonTopView;
+@synthesize buttonSideView = _buttonSideView;
 @synthesize canViewMainView = _canViewMainView;
 @synthesize canViewTopView = _canViewTopView;
 @synthesize canViewSideView = _canViewSideView;
@@ -70,15 +71,13 @@
 @synthesize sideView = _sideView;
 @synthesize containerView = _containerView;
 @synthesize containerViewIsBeingMoved = _containerViewIsBeingMoved;
-@synthesize buttonTopView = _buttonTopView;
-@synthesize buttonSideView = _buttonSideView;
 @synthesize mainViewSnapLocationDefault = _mainViewSnapLocationDefault;
 @synthesize mainViewSnapLocationVertical = _mainViewSnapLocationVertical;
 @synthesize mainViewSnapLocationHorizontal = _mainViewSnapLocationHorizontal;
 @synthesize mainViewSnapLocation = _mainViewSnapLocation;
 @synthesize viewHasAppeared = _viewHasAppeared;
 
-//- (void)setMainViewController:(UIViewController<ThreePaneMainViewProtocol> *)mainViewController
+//- (void)setMainViewController:(UIViewController<ThreePaneChildViewProtocol> *)mainViewController
 //{
 //    if ([self.viewHasAppeared boolValue]) NSLog(@"[WARNING] Use setAsMainViewController after view has appeared");
 //    else _mainViewController = mainViewController;
@@ -109,7 +108,7 @@
 
 #pragma mark - // INITS AND LOADS //
 
-- (id)initWithMainVC:(UIViewController <ThreePaneMainViewProtocol> *)mainVC topVC:(UIViewController <ThreePaneChildViewProtocol> *)topVC sideVC:(UIViewController <ThreePaneChildViewProtocol> *)sideVC
+- (id)initWithMainVC:(UIViewController <ThreePaneChildViewProtocol> *)mainVC topVC:(UIViewController <ThreePaneChildViewProtocol> *)topVC sideVC:(UIViewController <ThreePaneChildViewProtocol> *)sideVC
 {
     self = [super init];
     if (self)
@@ -117,6 +116,13 @@
         self.mainViewController = mainVC;
         self.topViewController = topVC;
         self.sideViewController = sideVC;
+        
+        if ([self.mainViewController respondsToSelector:@selector(topViewController)]) self.mainViewController.topViewController = self.topViewController;
+        if ([self.mainViewController respondsToSelector:@selector(sideViewController)]) self.mainViewController.sideViewController = self.sideViewController;
+        if ([self.topViewController respondsToSelector:@selector(mainViewController)]) self.topViewController.mainViewController = self.mainViewController;
+        if ([self.topViewController respondsToSelector:@selector(sideViewController)]) self.topViewController.sideViewController = self.sideViewController;
+        if ([self.sideViewController respondsToSelector:@selector(mainViewController)]) self.sideViewController.mainViewController = self.mainViewController;
+        if ([self.sideViewController respondsToSelector:@selector(topViewController)]) self.sideViewController.topViewController = self.topViewController;
     }
     return self;
 }
@@ -209,16 +215,34 @@
     [self.containerView bringSubviewToFront:self.buttonSideView];
     [self setCanViewTopView:YES];
     
+    NSMutableArray *childrenToCheck = [[NSMutableArray alloc] initWithArray:self.childViewControllers];
+    while (childrenToCheck.count > 0)
+    {
+        UIViewController *viewControllerOfInterest = [childrenToCheck objectAtIndex:0];
+        if ([viewControllerOfInterest conformsToProtocol:@protocol(ThreePaneChildViewProtocol)])
+        {
+            if ([viewControllerOfInterest respondsToSelector:@selector(threePaneViewController)]) ((UIViewController <ThreePaneChildViewProtocol> *)viewControllerOfInterest).threePaneViewController = self;
+            if ([viewControllerOfInterest respondsToSelector:@selector(mainViewController)]) ((UIViewController <ThreePaneChildViewProtocol> *)viewControllerOfInterest).mainViewController = self.mainViewController;
+            if ([viewControllerOfInterest respondsToSelector:@selector(topViewController)]) ((UIViewController <ThreePaneChildViewProtocol> *)viewControllerOfInterest).topViewController = self.topViewController;
+            if ([viewControllerOfInterest respondsToSelector:@selector(sideViewController)]) ((UIViewController <ThreePaneChildViewProtocol> *)viewControllerOfInterest).sideViewController = self.sideViewController;
+        }
+        [childrenToCheck addObjectsFromArray:viewControllerOfInterest.childViewControllers];
+        [childrenToCheck removeObject:viewControllerOfInterest];
+    }
+    
     // OTHER //
     
     [self layoutPaneViews];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NSTexturedFullScreenBackgroundColor.png"]]];
-    [self setAsContainerViewBackground:[UIImage imageNamed:@"background.png"]];
+    
+    UIGraphicsBeginImageContext(self.containerView.frame.size);
+    [[UIImage imageNamed:@"background.png"] drawInRect:self.containerView.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self setAsContainerViewBackground:image];
     
     // COMPLETION //
     
-    NSLog(@"[TEST] self.view = (%f, %f, %f, %f)", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    NSLog(@"[TEST] self.sideView = (%f, %f, %f, %f)", self.sideView.frame.origin.x, self.sideView.frame.origin.y, self.sideView.frame.size.width, self.sideView.frame.size.height);
     self.mainViewSnapLocation = self.mainViewSnapLocationDefault;
     self.viewHasAppeared = [NSNumber numberWithBool:YES];
 }
@@ -368,7 +392,7 @@
     else NSLog(@"[TEST] No mainViewController to pop");
 }
 
-- (void)setAsMainViewController:(UIViewController <ThreePaneMainViewProtocol> *)viewController
+- (void)setAsMainViewController:(UIViewController <ThreePaneChildViewProtocol> *)viewController
 {
     NSLog(@"[setAsMainViewController]");
     if ((![viewController isEqual:self.mainViewController]) && (viewController))
@@ -435,7 +459,6 @@
 
 - (void)buttonIsBeingMoved:(CustomButton *)sender
 {
-    NSLog(@"[buttonIsBeingMoved]");
     if ((([sender isEqual:self.buttonSideView]) || ([sender isEqual:self.lockView])) && (self.containerView.center.y == self.mainViewSnapLocationDefault.y))
     {
         if ((self.containerView.center.x < self.mainViewSnapLocationDefault.x) || (!self.sideView))

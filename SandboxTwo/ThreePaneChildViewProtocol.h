@@ -13,4 +13,11 @@
 
 @protocol ThreePaneChildViewProtocol <NSObject>
 @property (nonatomic, strong) UIViewController <ThreePaneViewControllerProtocol> *threePaneViewController;
+@optional
+@property (nonatomic, strong) UIViewController <ThreePaneChildViewProtocol> *mainViewController;
+@property (nonatomic, strong) UIViewController <ThreePaneChildViewProtocol> *sideViewController;
+@property (nonatomic, strong) UIViewController <ThreePaneChildViewProtocol> *topViewController;
+- (void)mainViewIsSnappedClosed;
+- (void)mainViewIsSnappedOpenVertical;
+- (void)mainViewIsSnappedOpenHorizontal;
 @end
