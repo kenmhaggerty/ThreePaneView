@@ -129,25 +129,25 @@
 
 - (void)awakeFromNib
 {
-    NSLog(@"[awakeFromNib]");
+    NSLog(@"[awakeFromNib] TPVC");
     [super awakeFromNib];
 }
 
 - (void)viewDidLoad
 {
-    NSLog(@"[viewDidLoad]");
+    NSLog(@"[viewDidLoad] TPVC");
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"[viewWillAppear:animated]");
+    NSLog(@"[viewWillAppear:] TPVC");
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"[viewDidAppear:animated]");
+    NSLog(@"[viewDidAppear:] TPVC");
     [super viewDidAppear:animated];
     
     // CUSTOM BUTTONS SETUP //
@@ -256,19 +256,25 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"[viewWillDisappear:animated]");
+    NSLog(@"[viewWillDisappear:] TPVC");
     [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"[viewDidDisappear]");
+    NSLog(@"[viewDidDisappear:] TPVC");
     [super viewDidDisappear:animated];
+}
+
+- (void)viewWillUnload
+{
+    NSLog(@"[viewWillUnload] TPVC");
+    [super viewWillUnload];
 }
 
 - (void)viewDidUnload
 {
-    NSLog(@"[viewDidUnload]");
+    NSLog(@"[viewDidUnload] TPVC");
     [super viewDidUnload];
 }
 
