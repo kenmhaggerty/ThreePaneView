@@ -16,7 +16,7 @@
 		7DF5D4C616BC68E000AFDAD0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF5D4C516BC68E000AFDAD0 /* CoreGraphics.framework */; };
 		7DF5D4CC16BC68E000AFDAD0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DF5D4CA16BC68E000AFDAD0 /* InfoPlist.strings */; };
 		7DF5D4CE16BC68E000AFDAD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5D4CD16BC68E000AFDAD0 /* main.m */; };
-		7DF5D4D216BC68E000AFDAD0 /* SandboxTwoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5D4D116BC68E000AFDAD0 /* SandboxTwoAppDelegate.m */; };
+		7DF5D4D216BC68E000AFDAD0 /* ThreePaneViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5D4D116BC68E000AFDAD0 /* ThreePaneViewAppDelegate.m */; };
 		7DF5D4D416BC68E000AFDAD0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF5D4D316BC68E000AFDAD0 /* Default.png */; };
 		7DF5D4D616BC68E000AFDAD0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF5D4D516BC68E000AFDAD0 /* Default@2x.png */; };
 		7DF5D4D816BC68E000AFDAD0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF5D4D716BC68E000AFDAD0 /* Default-568h@2x.png */; };
@@ -56,16 +56,16 @@
 		7D65902716C072F7004D5005 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background@2x.png"; path = "../../Woodbox/Woodbox/background@2x.png"; sourceTree = "<group>"; };
 		7D65902816C072F7004D5005 /* NSTexturedFullScreenBackgroundColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NSTexturedFullScreenBackgroundColor.png; path = ../../Woodbox/Woodbox/NSTexturedFullScreenBackgroundColor.png; sourceTree = "<group>"; };
 		7D65902916C072F7004D5005 /* NSTexturedFullScreenBackgroundColor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NSTexturedFullScreenBackgroundColor@2x.png"; path = "../../Woodbox/Woodbox/NSTexturedFullScreenBackgroundColor@2x.png"; sourceTree = "<group>"; };
-		7DF5D4BE16BC68E000AFDAD0 /* SandboxTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SandboxTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DF5D4BE16BC68E000AFDAD0 /* ThreePaneView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreePaneView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF5D4C116BC68E000AFDAD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7DF5D4C316BC68E000AFDAD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DF5D4C516BC68E000AFDAD0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7DF5D4C916BC68E000AFDAD0 /* SandboxTwo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SandboxTwo-Info.plist"; sourceTree = "<group>"; };
+		7DF5D4C916BC68E000AFDAD0 /* ThreePaneView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ThreePaneView-Info.plist"; sourceTree = "<group>"; };
 		7DF5D4CB16BC68E000AFDAD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DF5D4CD16BC68E000AFDAD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7DF5D4CF16BC68E000AFDAD0 /* SandboxTwo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SandboxTwo-Prefix.pch"; sourceTree = "<group>"; };
-		7DF5D4D016BC68E000AFDAD0 /* SandboxTwoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SandboxTwoAppDelegate.h; sourceTree = "<group>"; };
-		7DF5D4D116BC68E000AFDAD0 /* SandboxTwoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SandboxTwoAppDelegate.m; sourceTree = "<group>"; };
+		7DF5D4CF16BC68E000AFDAD0 /* ThreePaneView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThreePaneView-Prefix.pch"; sourceTree = "<group>"; };
+		7DF5D4D016BC68E000AFDAD0 /* ThreePaneViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreePaneViewAppDelegate.h; sourceTree = "<group>"; };
+		7DF5D4D116BC68E000AFDAD0 /* ThreePaneViewAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreePaneViewAppDelegate.m; sourceTree = "<group>"; };
 		7DF5D4D316BC68E000AFDAD0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7DF5D4D516BC68E000AFDAD0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7DF5D4D716BC68E000AFDAD0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		7DF5D4B516BC68E000AFDAD0 = {
 			isa = PBXGroup;
 			children = (
-				7DF5D4C716BC68E000AFDAD0 /* SandboxTwo */,
+				7DF5D4C716BC68E000AFDAD0 /* ThreePaneViewController */,
 				7DF5D4C016BC68E000AFDAD0 /* Frameworks */,
 				7DF5D4BF16BC68E000AFDAD0 /* Products */,
 			);
@@ -149,7 +149,7 @@
 		7DF5D4BF16BC68E000AFDAD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7DF5D4BE16BC68E000AFDAD0 /* SandboxTwo.app */,
+				7DF5D4BE16BC68E000AFDAD0 /* ThreePaneView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,11 +165,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7DF5D4C716BC68E000AFDAD0 /* SandboxTwo */ = {
+		7DF5D4C716BC68E000AFDAD0 /* ThreePaneViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7DF5D4D016BC68E000AFDAD0 /* SandboxTwoAppDelegate.h */,
-				7DF5D4D116BC68E000AFDAD0 /* SandboxTwoAppDelegate.m */,
+				7DF5D4D016BC68E000AFDAD0 /* ThreePaneViewAppDelegate.h */,
+				7DF5D4D116BC68E000AFDAD0 /* ThreePaneViewAppDelegate.m */,
 				7DF5D4D916BC68E000AFDAD0 /* MainStoryboard.storyboard */,
 				7DF5D52616BCB7E300AFDAD0 /* ThreePaneViewControllerProtocol.h */,
 				7DF5D52716BDA47C00AFDAD0 /* ThreePaneChildViewProtocol.h */,
@@ -186,16 +186,17 @@
 				7DF5D4FF16BC7B0E00AFDAD0 /* CustomButton */,
 				7DF5D4C816BC68E000AFDAD0 /* Supporting Files */,
 			);
-			path = SandboxTwo;
+			name = ThreePaneViewController;
+			path = ThreePaneView;
 			sourceTree = "<group>";
 		};
 		7DF5D4C816BC68E000AFDAD0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7DF5D4C916BC68E000AFDAD0 /* SandboxTwo-Info.plist */,
+				7DF5D4C916BC68E000AFDAD0 /* ThreePaneView-Info.plist */,
 				7DF5D4CA16BC68E000AFDAD0 /* InfoPlist.strings */,
 				7DF5D4CD16BC68E000AFDAD0 /* main.m */,
-				7DF5D4CF16BC68E000AFDAD0 /* SandboxTwo-Prefix.pch */,
+				7DF5D4CF16BC68E000AFDAD0 /* ThreePaneView-Prefix.pch */,
 				7DF5D4D316BC68E000AFDAD0 /* Default.png */,
 				7DF5D4D516BC68E000AFDAD0 /* Default@2x.png */,
 				7DF5D4D716BC68E000AFDAD0 /* Default-568h@2x.png */,
@@ -248,9 +249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7DF5D4BD16BC68E000AFDAD0 /* SandboxTwo */ = {
+		7DF5D4BD16BC68E000AFDAD0 /* ThreePaneView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7DF5D4E116BC68E000AFDAD0 /* Build configuration list for PBXNativeTarget "SandboxTwo" */;
+			buildConfigurationList = 7DF5D4E116BC68E000AFDAD0 /* Build configuration list for PBXNativeTarget "ThreePaneView" */;
 			buildPhases = (
 				7DF5D4BA16BC68E000AFDAD0 /* Sources */,
 				7DF5D4BB16BC68E000AFDAD0 /* Frameworks */,
@@ -260,9 +261,9 @@
 			);
 			dependencies = (
 			);
-			name = SandboxTwo;
+			name = ThreePaneView;
 			productName = SandboxTwo;
-			productReference = 7DF5D4BE16BC68E000AFDAD0 /* SandboxTwo.app */;
+			productReference = 7DF5D4BE16BC68E000AFDAD0 /* ThreePaneView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -271,11 +272,11 @@
 		7DF5D4B616BC68E000AFDAD0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = SandboxTwo;
+				CLASSPREFIX = ThreePaneView;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Ken M. Haggerty";
 			};
-			buildConfigurationList = 7DF5D4B916BC68E000AFDAD0 /* Build configuration list for PBXProject "SandboxTwo" */;
+			buildConfigurationList = 7DF5D4B916BC68E000AFDAD0 /* Build configuration list for PBXProject "ThreePaneView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -287,7 +288,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7DF5D4BD16BC68E000AFDAD0 /* SandboxTwo */,
+				7DF5D4BD16BC68E000AFDAD0 /* ThreePaneView */,
 			);
 		};
 /* End PBXProject section */
@@ -335,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DF5D4CE16BC68E000AFDAD0 /* main.m in Sources */,
-				7DF5D4D216BC68E000AFDAD0 /* SandboxTwoAppDelegate.m in Sources */,
+				7DF5D4D216BC68E000AFDAD0 /* ThreePaneViewAppDelegate.m in Sources */,
 				7DF5D4DE16BC68E000AFDAD0 /* ThreePaneViewController.m in Sources */,
 				7DF5D4FE16BC7B0800AFDAD0 /* CustomButton.m in Sources */,
 				7DF5D50E16BC7B6C00AFDAD0 /* CustomBadge.m in Sources */,
@@ -430,10 +431,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SandboxTwo/SandboxTwo-Prefix.pch";
-				INFOPLIST_FILE = "SandboxTwo/SandboxTwo-Info.plist";
+				GCC_PREFIX_HEADER = "ThreePaneView/ThreePaneView-Prefix.pch";
+				INFOPLIST_FILE = "ThreePaneView/ThreePaneView-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ThreePaneView;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -442,10 +443,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SandboxTwo/SandboxTwo-Prefix.pch";
-				INFOPLIST_FILE = "SandboxTwo/SandboxTwo-Info.plist";
+				GCC_PREFIX_HEADER = "ThreePaneView/ThreePaneView-Prefix.pch";
+				INFOPLIST_FILE = "ThreePaneView/ThreePaneView-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ThreePaneView;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -453,7 +454,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7DF5D4B916BC68E000AFDAD0 /* Build configuration list for PBXProject "SandboxTwo" */ = {
+		7DF5D4B916BC68E000AFDAD0 /* Build configuration list for PBXProject "ThreePaneView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7DF5D4DF16BC68E000AFDAD0 /* Debug */,
@@ -462,7 +463,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7DF5D4E116BC68E000AFDAD0 /* Build configuration list for PBXNativeTarget "SandboxTwo" */ = {
+		7DF5D4E116BC68E000AFDAD0 /* Build configuration list for PBXNativeTarget "ThreePaneView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7DF5D4E216BC68E000AFDAD0 /* Debug */,
