@@ -136,15 +136,15 @@
     self.buttonSideView.delegate = self;
     self.buttonSideView.userInteractionEnabled = YES;
     self.buttonSideView.viewForCoordinates = self.view;
-    self.buttonSideView.imageUntouched = [UIImage imageNamed:@"button_sidebar_unpressed_nomessages.png"];
-    self.buttonSideView.imageActive = [UIImage imageNamed:@"button_sidebar_unpressed_messages.png"];
-    self.buttonSideView.imageTouched = [UIImage imageNamed:@"button_sidebar_pressed.png"];
+    self.buttonSideView.imageUntouched = [UIImage imageNamed:@"button_sidebar_unpressed_nomessages"];
+    self.buttonSideView.imageActive = [UIImage imageNamed:@"button_sidebar_unpressed_messages"];
+    self.buttonSideView.imageTouched = [UIImage imageNamed:@"button_sidebar_pressed"];
     self.buttonTopView.delegate = self;
     self.buttonTopView.userInteractionEnabled = YES;
     self.buttonTopView.viewForCoordinates = self.view;
-    self.buttonTopView.imageUntouched = [UIImage imageNamed:@"button_help_unpressed_noupdates.png"];
-    self.buttonTopView.imageActive = [UIImage imageNamed:@"button_help_unpressed_updates.png"];
-    self.buttonTopView.imageTouched = [UIImage imageNamed:@"button_help_pressed.png"];
+    self.buttonTopView.imageUntouched = [UIImage imageNamed:@"button_help_unpressed_noupdates"];
+    self.buttonTopView.imageActive = [UIImage imageNamed:@"button_help_unpressed_updates"];
+    self.buttonTopView.imageTouched = [UIImage imageNamed:@"button_help_pressed"];
     
     // CONTAINER VIEW SETUP //
     
@@ -235,10 +235,10 @@
     // OTHER //
     
     [self layoutPaneViews];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NSTexturedFullScreenBackgroundColor.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NSTexturedFullScreenBackgroundColor"]]];
     
     UIGraphicsBeginImageContext(self.containerView.frame.size);
-    [[UIImage imageNamed:@"background.png"] drawInRect:self.containerView.bounds];
+    [[UIImage imageNamed:@"background"] drawInRect:self.containerView.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self setAsContainerViewBackground:image];

@@ -19,7 +19,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="poQ-JP-sgU">
-                                <rect key="frame" x="0.0" y="-497" width="320" height="1059.9999998369308"/>
+                                <rect key="frame" x="0.0" y="-497" width="320" height="1060.0000025959628"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="wLV-LY-udG">
@@ -28,7 +28,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="Xt9-9K-HrJ">
-                                        <rect key="frame" x="0.0" y="498" width="320" height="481.99999991985914"/>
+                                        <rect key="frame" x="0.0" y="498" width="320" height="482.00000127678982"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
