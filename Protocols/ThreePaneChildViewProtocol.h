@@ -3,7 +3,7 @@
 //  ThreePaneView
 //
 //  Created by Ken M. Haggerty on 2/2/13.
-//  Copyright (c) 2013 Ken M. Haggerty. All rights reserved.
+//  Copyright (c) 2013-2017 Ken M. Haggerty. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
