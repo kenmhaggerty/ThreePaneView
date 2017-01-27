@@ -1,0 +1,17 @@
+# Podfile
+# ThreePaneView
+# Ken M. Haggerty
+# CREATED: Jan 26 2017
+# EDITED:  Jan 27 2017
+
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+def sharedPods
+	pod 'CPAnimationSequence'
+	pod 'CustomBadge'
+end
+
+target 'ThreePaneView' do
+  sharedPods
+end

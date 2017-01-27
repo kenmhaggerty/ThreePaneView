@@ -219,7 +219,7 @@
     
     // SIDE, MAIN, AND TOP VIEW CONTROLLERS //
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     self.mainViewSnapLocationDefault = CGPointMake(self.containerView.center.x, self.containerView.center.y);
     self.mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:MAINVIEW_CONTROLLER_ID];

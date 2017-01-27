@@ -1,5 +1,5 @@
 //
-//  TopViewController.m
+//  MainViewController.m
 //  ThreePaneView
 //
 //  Created by Ken M. Haggerty on 2/1/13.
@@ -10,15 +10,15 @@
 
 #pragma mark - // IMPORTS (Private) //
 
-#import "TopViewController.h"
+#import "MainViewController.h"
 
 #pragma mark - // DEFINITIONS (Private) //
 
-@interface TopViewController ()
+@interface MainViewController ()
 
 @end
 
-@implementation TopViewController
+@implementation MainViewController
 
 #pragma mark - // SETTERS AND GETTERS //
 
@@ -59,7 +59,7 @@
 
 - (IBAction)addMainView:(UIButton *)sender
 {
-    [self.threePaneViewController setAsMainViewController:[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"Alternate Main View Controller"]];
+    [self.threePaneViewController setAsMainViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Alternate Main View Controller"]];
 }
 
 - (IBAction)lockMainView:(UIButton *)sender
@@ -84,7 +84,7 @@
 
 - (IBAction)addTopView:(UIButton *)sender
 {
-    [self.threePaneViewController setAsTopViewController:[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"Alternate Top View Controller"]];
+    [self.threePaneViewController setAsTopViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Alternate Top View Controller"]];
 }
 
 - (IBAction)lockTopView:(UIButton *)sender
@@ -109,7 +109,7 @@
 
 - (IBAction)addSideView:(UIButton *)sender
 {
-    [self.threePaneViewController setAsSideViewController:[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"Alternate Side View Controller"]];
+    [self.threePaneViewController setAsSideViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Alternate Side View Controller"]];
 }
 
 - (IBAction)lockSideView:(UIButton *)sender

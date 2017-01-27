@@ -1,0 +1,6 @@
+framework module Pods_ThreePaneView {
+  umbrella header "Pods-ThreePaneView-umbrella.h"
+
+  export *
+  module * { export * }
+}

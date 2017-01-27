@@ -1,0 +1,728 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		019B19DC42444CE88213C86AEB9C7C9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792165F2CA033667D6F57205316D40A1 /* Foundation.framework */; };
+		04B1182D2C7E19AE16BE917942A86BDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 695DA86B20FEA7BF7EA40FA7DB65A479 /* UIKit.framework */; };
+		0CB6E91B998406752E84462B4CD281D9 /* CustomBadge-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0775F469C2A60ED653D4375A6DBE4C98 /* CustomBadge-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A1D77FAB4A5C195BB6A495319E38558 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9AD02E9CEE9B012A246B3874CF4587 /* CoreGraphics.framework */; };
+		33349F8519F83EADFF26A0DE7AF4A422 /* CPAnimationSequence-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 61079A6514C52E37CA01122F0311ABFA /* CPAnimationSequence-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3345807D58A2606731701DA30FF8000A /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF7725DA43C236ED58054EF1ED962 /* CPAnimationProgram.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		382CDA5B6991068DE8738D358B7C388E /* Pods-ThreePaneView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4598B74F77985B78B46148D5040020B9 /* Pods-ThreePaneView-dummy.m */; };
+		48533B7053052776AC41F490BB7E1F9C /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEE3E1E7BCD5794051646D0F56C20F1 /* CustomBadge.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5BEAF647A6C3E3A79C9F72AB0768D919 /* CPAnimationSequence-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F323364C315D470E62A5952296DBFC /* CPAnimationSequence-dummy.m */; };
+		68BD48A5DDF078F171E648A7236B9D44 /* CustomBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ABBF242BEE4EA8F23B63217608FF99 /* CustomBadge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75F176DD2CC06120B433A3BE2DA6F47C /* Pods-ThreePaneView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7980D709C41D29D78ABF132A23DB9A /* Pods-ThreePaneView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A7C66498421D7E7F62ED844B49F1AA /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 8559CD537BBBACF75F35914BEEA8EC7E /* CPAnimationStep.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A661AEB530AF23EF004791602746F3A6 /* CPAnimationSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 432DCA6EB7020138A8C0B04FE67EDFD6 /* CPAnimationSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAC2F83472A2A5FC23B13B875ED764B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792165F2CA033667D6F57205316D40A1 /* Foundation.framework */; };
+		B0CFCFA0EA97A80DD0E60A741FB1C267 /* CPAnimationProgram.h in Headers */ = {isa = PBXBuildFile; fileRef = FB090F290F868E6CDA9226BECD7CE011 /* CPAnimationProgram.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA35F4DEE7FA5750253C17882C8C45BE /* CustomBadge-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 435B211FFD3AFD80AC023D3E65FC7B2D /* CustomBadge-dummy.m */; };
+		C6A63613A10F7E4182BB39F70FA680D3 /* CPAnimationStep.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A55A4D36993587E853EF7F21265D16 /* CPAnimationStep.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF26ADB6C3AD47522FD1207AFA79F6B3 /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D658C45C28E9247A80A8C7D80094F36 /* CPAnimationSequence.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F9C26277068E84C3DED38A6344A5D8C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792165F2CA033667D6F57205316D40A1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0AF1548AD643153826E0CC5063F15AC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B9C9DAE0991BF8A0687E302A541FD25;
+			remoteInfo = CPAnimationSequence;
+		};
+		F5BED8E325999C468D8A67EBBBCF3275 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73DCD34D8685B941BACB4F0EF531240F;
+			remoteInfo = CustomBadge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		010EC064F4F1A6E6005C84FE6A25C15B /* CustomBadge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CustomBadge.framework; path = CustomBadge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06D23005E6DFC973A216CDE845EEAC8B /* Pods_ThreePaneView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ThreePaneView.framework; path = "Pods-ThreePaneView.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0775F469C2A60ED653D4375A6DBE4C98 /* CustomBadge-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomBadge-umbrella.h"; sourceTree = "<group>"; };
+		0D658C45C28E9247A80A8C7D80094F36 /* CPAnimationSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CPAnimationSequence.m; path = Component/private/CPAnimationSequence.m; sourceTree = "<group>"; };
+		1068AAAC5B343C823E9C19EC17ECC66B /* Pods-ThreePaneView-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ThreePaneView-resources.sh"; sourceTree = "<group>"; };
+		1DFCED843197521571829E00176AD337 /* Pods-ThreePaneView-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ThreePaneView-acknowledgements.markdown"; sourceTree = "<group>"; };
+		28ABBF242BEE4EA8F23B63217608FF99 /* CustomBadge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CustomBadge.h; path = Classes/CustomBadge.h; sourceTree = "<group>"; };
+		3E7980D709C41D29D78ABF132A23DB9A /* Pods-ThreePaneView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ThreePaneView-umbrella.h"; sourceTree = "<group>"; };
+		3F9DA5AC33DA2C1638583F9C70E75BBF /* CPAnimationSequence-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CPAnimationSequence-prefix.pch"; sourceTree = "<group>"; };
+		432DCA6EB7020138A8C0B04FE67EDFD6 /* CPAnimationSequence.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CPAnimationSequence.h; path = Component/CPAnimationSequence.h; sourceTree = "<group>"; };
+		435B211FFD3AFD80AC023D3E65FC7B2D /* CustomBadge-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CustomBadge-dummy.m"; sourceTree = "<group>"; };
+		4598B74F77985B78B46148D5040020B9 /* Pods-ThreePaneView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ThreePaneView-dummy.m"; sourceTree = "<group>"; };
+		48F323364C315D470E62A5952296DBFC /* CPAnimationSequence-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CPAnimationSequence-dummy.m"; sourceTree = "<group>"; };
+		4D9AD02E9CEE9B012A246B3874CF4587 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		564DF7725DA43C236ED58054EF1ED962 /* CPAnimationProgram.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CPAnimationProgram.m; path = Component/private/CPAnimationProgram.m; sourceTree = "<group>"; };
+		567CCDF1EB44DC49DF0DDD12EC41EBDA /* CPAnimationSequence.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CPAnimationSequence.xcconfig; sourceTree = "<group>"; };
+		5DE486E934AF72AD1BDAFE8DB2B675F9 /* CPAnimationSequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CPAnimationSequence.framework; path = CPAnimationSequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61079A6514C52E37CA01122F0311ABFA /* CPAnimationSequence-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CPAnimationSequence-umbrella.h"; sourceTree = "<group>"; };
+		695DA86B20FEA7BF7EA40FA7DB65A479 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		792165F2CA033667D6F57205316D40A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		83EBBB51EE13A6FA57C2470D54B06584 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8559CD537BBBACF75F35914BEEA8EC7E /* CPAnimationStep.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CPAnimationStep.m; path = Component/private/CPAnimationStep.m; sourceTree = "<group>"; };
+		8AF1233415481210EFCC824FB9087D95 /* Pods-ThreePaneView-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ThreePaneView-frameworks.sh"; sourceTree = "<group>"; };
+		930EB3FA5F2354056CD08A98830828A5 /* Pods-ThreePaneView-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ThreePaneView-acknowledgements.plist"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A66E634D57B76150AA84376F516F586C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC0C45520E57F65784CBDC8D1A60583F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AECB44FDFB023082EE4CFF6975F3F9F1 /* Pods-ThreePaneView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ThreePaneView.modulemap"; sourceTree = "<group>"; };
+		B1E157A5816E941ADB73C98D6581C78D /* CustomBadge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomBadge.xcconfig; sourceTree = "<group>"; };
+		B4637C7A1CB6EF576AEEE0284225401F /* Pods-ThreePaneView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ThreePaneView.release.xcconfig"; sourceTree = "<group>"; };
+		BEACBC186ACCC0C7A796D5A993BA8A5B /* CPAnimationSequence.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CPAnimationSequence.modulemap; sourceTree = "<group>"; };
+		C00A3DA59686238D68957D023EEA0B82 /* Pods-ThreePaneView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ThreePaneView.debug.xcconfig"; sourceTree = "<group>"; };
+		C43408F972F89B3F6DAAE4F1035E0C17 /* CustomBadge.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CustomBadge.modulemap; sourceTree = "<group>"; };
+		C631361BB095492C3655069A89DF606D /* CustomBadge-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomBadge-prefix.pch"; sourceTree = "<group>"; };
+		CEEE3E1E7BCD5794051646D0F56C20F1 /* CustomBadge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CustomBadge.m; path = Classes/CustomBadge.m; sourceTree = "<group>"; };
+		E1A55A4D36993587E853EF7F21265D16 /* CPAnimationStep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CPAnimationStep.h; path = Component/CPAnimationStep.h; sourceTree = "<group>"; };
+		FB090F290F868E6CDA9226BECD7CE011 /* CPAnimationProgram.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CPAnimationProgram.h; path = Component/CPAnimationProgram.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05B273989D14E6A77AAE20EC56F7FBD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAC2F83472A2A5FC23B13B875ED764B8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBA45ECC787F9FFC865F4A266C67A003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9C26277068E84C3DED38A6344A5D8C0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCC3D5E35F2BC2A6A7B4E4EDBD56380C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A1D77FAB4A5C195BB6A495319E38558 /* CoreGraphics.framework in Frameworks */,
+				019B19DC42444CE88213C86AEB9C7C9D /* Foundation.framework in Frameworks */,
+				04B1182D2C7E19AE16BE917942A86BDC /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D185E38271E1279D6AC3E7A00CAF9BA /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D185E38271E1279D6AC3E7A00CAF9BA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4D9AD02E9CEE9B012A246B3874CF4587 /* CoreGraphics.framework */,
+				792165F2CA033667D6F57205316D40A1 /* Foundation.framework */,
+				695DA86B20FEA7BF7EA40FA7DB65A479 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		497082902776357CC1D9079C41816127 /* CPAnimationSequence */ = {
+			isa = PBXGroup;
+			children = (
+				FB090F290F868E6CDA9226BECD7CE011 /* CPAnimationProgram.h */,
+				564DF7725DA43C236ED58054EF1ED962 /* CPAnimationProgram.m */,
+				432DCA6EB7020138A8C0B04FE67EDFD6 /* CPAnimationSequence.h */,
+				0D658C45C28E9247A80A8C7D80094F36 /* CPAnimationSequence.m */,
+				E1A55A4D36993587E853EF7F21265D16 /* CPAnimationStep.h */,
+				8559CD537BBBACF75F35914BEEA8EC7E /* CPAnimationStep.m */,
+				4A64EDAE096E97529B4028E85F0AC4CB /* Support Files */,
+			);
+			name = CPAnimationSequence;
+			path = CPAnimationSequence;
+			sourceTree = "<group>";
+		};
+		49ACBF445D79019C5AA11B193682C28D /* CustomBadge */ = {
+			isa = PBXGroup;
+			children = (
+				28ABBF242BEE4EA8F23B63217608FF99 /* CustomBadge.h */,
+				CEEE3E1E7BCD5794051646D0F56C20F1 /* CustomBadge.m */,
+				CE03D2E3E486219F7F1A14529F1988D2 /* Support Files */,
+			);
+			name = CustomBadge;
+			path = CustomBadge;
+			sourceTree = "<group>";
+		};
+		4A64EDAE096E97529B4028E85F0AC4CB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEACBC186ACCC0C7A796D5A993BA8A5B /* CPAnimationSequence.modulemap */,
+				567CCDF1EB44DC49DF0DDD12EC41EBDA /* CPAnimationSequence.xcconfig */,
+				48F323364C315D470E62A5952296DBFC /* CPAnimationSequence-dummy.m */,
+				3F9DA5AC33DA2C1638583F9C70E75BBF /* CPAnimationSequence-prefix.pch */,
+				61079A6514C52E37CA01122F0311ABFA /* CPAnimationSequence-umbrella.h */,
+				AC0C45520E57F65784CBDC8D1A60583F /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CPAnimationSequence";
+			sourceTree = "<group>";
+		};
+		7D358A64CED238D39E2333B2A97DC58E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				497082902776357CC1D9079C41816127 /* CPAnimationSequence */,
+				49ACBF445D79019C5AA11B193682C28D /* CustomBadge */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				7D358A64CED238D39E2333B2A97DC58E /* Pods */,
+				DA8D44C8796CEE5318DB2E36D7E98F49 /* Products */,
+				B4C3E9637108199D6D18EBC5B0B1D8D4 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		B4C3E9637108199D6D18EBC5B0B1D8D4 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F824F397B0A375CE92A316CFEC504379 /* Pods-ThreePaneView */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CE03D2E3E486219F7F1A14529F1988D2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C43408F972F89B3F6DAAE4F1035E0C17 /* CustomBadge.modulemap */,
+				B1E157A5816E941ADB73C98D6581C78D /* CustomBadge.xcconfig */,
+				435B211FFD3AFD80AC023D3E65FC7B2D /* CustomBadge-dummy.m */,
+				C631361BB095492C3655069A89DF606D /* CustomBadge-prefix.pch */,
+				0775F469C2A60ED653D4375A6DBE4C98 /* CustomBadge-umbrella.h */,
+				83EBBB51EE13A6FA57C2470D54B06584 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CustomBadge";
+			sourceTree = "<group>";
+		};
+		DA8D44C8796CEE5318DB2E36D7E98F49 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DE486E934AF72AD1BDAFE8DB2B675F9 /* CPAnimationSequence.framework */,
+				010EC064F4F1A6E6005C84FE6A25C15B /* CustomBadge.framework */,
+				06D23005E6DFC973A216CDE845EEAC8B /* Pods_ThreePaneView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F824F397B0A375CE92A316CFEC504379 /* Pods-ThreePaneView */ = {
+			isa = PBXGroup;
+			children = (
+				A66E634D57B76150AA84376F516F586C /* Info.plist */,
+				AECB44FDFB023082EE4CFF6975F3F9F1 /* Pods-ThreePaneView.modulemap */,
+				1DFCED843197521571829E00176AD337 /* Pods-ThreePaneView-acknowledgements.markdown */,
+				930EB3FA5F2354056CD08A98830828A5 /* Pods-ThreePaneView-acknowledgements.plist */,
+				4598B74F77985B78B46148D5040020B9 /* Pods-ThreePaneView-dummy.m */,
+				8AF1233415481210EFCC824FB9087D95 /* Pods-ThreePaneView-frameworks.sh */,
+				1068AAAC5B343C823E9C19EC17ECC66B /* Pods-ThreePaneView-resources.sh */,
+				3E7980D709C41D29D78ABF132A23DB9A /* Pods-ThreePaneView-umbrella.h */,
+				C00A3DA59686238D68957D023EEA0B82 /* Pods-ThreePaneView.debug.xcconfig */,
+				B4637C7A1CB6EF576AEEE0284225401F /* Pods-ThreePaneView.release.xcconfig */,
+			);
+			name = "Pods-ThreePaneView";
+			path = "Target Support Files/Pods-ThreePaneView";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6E65191BEA044E9BC340E35998906AB5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75F176DD2CC06120B433A3BE2DA6F47C /* Pods-ThreePaneView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77A2278535BD91C0B0533220EC7B1563 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CB6E91B998406752E84462B4CD281D9 /* CustomBadge-umbrella.h in Headers */,
+				68BD48A5DDF078F171E648A7236B9D44 /* CustomBadge.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97A8A635C903F0197D533C95CB53464E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0CFCFA0EA97A80DD0E60A741FB1C267 /* CPAnimationProgram.h in Headers */,
+				33349F8519F83EADFF26A0DE7AF4A422 /* CPAnimationSequence-umbrella.h in Headers */,
+				A661AEB530AF23EF004791602746F3A6 /* CPAnimationSequence.h in Headers */,
+				C6A63613A10F7E4182BB39F70FA680D3 /* CPAnimationStep.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0B9C9DAE0991BF8A0687E302A541FD25 /* CPAnimationSequence */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69A5DCF558441C0F95DEFB3C54E59F44 /* Build configuration list for PBXNativeTarget "CPAnimationSequence" */;
+			buildPhases = (
+				A8FC3F4CB025AEF5C47C635C01FEE387 /* Sources */,
+				DCC3D5E35F2BC2A6A7B4E4EDBD56380C /* Frameworks */,
+				97A8A635C903F0197D533C95CB53464E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CPAnimationSequence;
+			productName = CPAnimationSequence;
+			productReference = 5DE486E934AF72AD1BDAFE8DB2B675F9 /* CPAnimationSequence.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		73DCD34D8685B941BACB4F0EF531240F /* CustomBadge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8B540162FF5C5264DCDD3C5A5692B95 /* Build configuration list for PBXNativeTarget "CustomBadge" */;
+			buildPhases = (
+				BE0F894EB0B74A74064D9E13064FB26A /* Sources */,
+				05B273989D14E6A77AAE20EC56F7FBD6 /* Frameworks */,
+				77A2278535BD91C0B0533220EC7B1563 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CustomBadge;
+			productName = CustomBadge;
+			productReference = 010EC064F4F1A6E6005C84FE6A25C15B /* CustomBadge.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D3E2B1EEEF8F34E78D6FA53CBD224632 /* Pods-ThreePaneView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E5B6B8D249F132F8F8DCA3163E3EF07 /* Build configuration list for PBXNativeTarget "Pods-ThreePaneView" */;
+			buildPhases = (
+				A95093D86493D25B0AF58828804171A2 /* Sources */,
+				DBA45ECC787F9FFC865F4A266C67A003 /* Frameworks */,
+				6E65191BEA044E9BC340E35998906AB5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1981CAFC0AEA2A5D2FCB93CB7E3E5A92 /* PBXTargetDependency */,
+				44CA260E915FDF4D159C8C80D27BCE0E /* PBXTargetDependency */,
+			);
+			name = "Pods-ThreePaneView";
+			productName = "Pods-ThreePaneView";
+			productReference = 06D23005E6DFC973A216CDE845EEAC8B /* Pods_ThreePaneView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = DA8D44C8796CEE5318DB2E36D7E98F49 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0B9C9DAE0991BF8A0687E302A541FD25 /* CPAnimationSequence */,
+				73DCD34D8685B941BACB4F0EF531240F /* CustomBadge */,
+				D3E2B1EEEF8F34E78D6FA53CBD224632 /* Pods-ThreePaneView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A8FC3F4CB025AEF5C47C635C01FEE387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3345807D58A2606731701DA30FF8000A /* CPAnimationProgram.m in Sources */,
+				5BEAF647A6C3E3A79C9F72AB0768D919 /* CPAnimationSequence-dummy.m in Sources */,
+				DF26ADB6C3AD47522FD1207AFA79F6B3 /* CPAnimationSequence.m in Sources */,
+				79A7C66498421D7E7F62ED844B49F1AA /* CPAnimationStep.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A95093D86493D25B0AF58828804171A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				382CDA5B6991068DE8738D358B7C388E /* Pods-ThreePaneView-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE0F894EB0B74A74064D9E13064FB26A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA35F4DEE7FA5750253C17882C8C45BE /* CustomBadge-dummy.m in Sources */,
+				48533B7053052776AC41F490BB7E1F9C /* CustomBadge.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1981CAFC0AEA2A5D2FCB93CB7E3E5A92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CPAnimationSequence;
+			target = 0B9C9DAE0991BF8A0687E302A541FD25 /* CPAnimationSequence */;
+			targetProxy = 0AF1548AD643153826E0CC5063F15AC8 /* PBXContainerItemProxy */;
+		};
+		44CA260E915FDF4D159C8C80D27BCE0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CustomBadge;
+			target = 73DCD34D8685B941BACB4F0EF531240F /* CustomBadge */;
+			targetProxy = F5BED8E325999C468D8A67EBBBCF3275 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		18DCC53B6EBBDD4D305F3096844A4B58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1E157A5816E941ADB73C98D6581C78D /* CustomBadge.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CustomBadge/CustomBadge-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CustomBadge/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CustomBadge/CustomBadge.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CustomBadge;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		25CB6CE9573042B9FCA7CB8445E1D646 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 567CCDF1EB44DC49DF0DDD12EC41EBDA /* CPAnimationSequence.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CPAnimationSequence/CPAnimationSequence-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CPAnimationSequence/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CPAnimationSequence/CPAnimationSequence.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CPAnimationSequence;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		37F0DBF3A876D85FC2535F58A17B0D67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1E157A5816E941ADB73C98D6581C78D /* CustomBadge.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CustomBadge/CustomBadge-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CustomBadge/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CustomBadge/CustomBadge.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CustomBadge;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5452D82E5FB08D42FEB7E1E5D08FAF94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 567CCDF1EB44DC49DF0DDD12EC41EBDA /* CPAnimationSequence.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CPAnimationSequence/CPAnimationSequence-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CPAnimationSequence/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CPAnimationSequence/CPAnimationSequence.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CPAnimationSequence;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5B2523835DF0F7253DABA3E98BD932C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9FE7D735F0E258880C89E4B48EFADA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C00A3DA59686238D68957D023EEA0B82 /* Pods-ThreePaneView.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ThreePaneView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ThreePaneView/Pods-ThreePaneView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ThreePaneView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D9DA7CBB635654DB3CB137846AC062BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		ECD02DC9EBD043CF1FBCDA2BD923FF54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4637C7A1CB6EF576AEEE0284225401F /* Pods-ThreePaneView.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ThreePaneView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ThreePaneView/Pods-ThreePaneView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ThreePaneView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9DA7CBB635654DB3CB137846AC062BD /* Debug */,
+				5B2523835DF0F7253DABA3E98BD932C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E5B6B8D249F132F8F8DCA3163E3EF07 /* Build configuration list for PBXNativeTarget "Pods-ThreePaneView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FE7D735F0E258880C89E4B48EFADA66 /* Debug */,
+				ECD02DC9EBD043CF1FBCDA2BD923FF54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69A5DCF558441C0F95DEFB3C54E59F44 /* Build configuration list for PBXNativeTarget "CPAnimationSequence" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5452D82E5FB08D42FEB7E1E5D08FAF94 /* Debug */,
+				25CB6CE9573042B9FCA7CB8445E1D646 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8B540162FF5C5264DCDD3C5A5692B95 /* Build configuration list for PBXNativeTarget "CustomBadge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18DCC53B6EBBDD4D305F3096844A4B58 /* Debug */,
+				37F0DBF3A876D85FC2535F58A17B0D67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

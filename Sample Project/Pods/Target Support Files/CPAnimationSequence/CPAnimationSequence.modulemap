@@ -1,0 +1,6 @@
+framework module CPAnimationSequence {
+  umbrella header "CPAnimationSequence-umbrella.h"
+
+  export *
+  module * { export * }
+}

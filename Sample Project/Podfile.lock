@@ -1,0 +1,15 @@
+PODS:
+  - CPAnimationSequence (0.0.4)
+  - CustomBadge (2.0)
+
+DEPENDENCIES:
+  - CPAnimationSequence
+  - CustomBadge
+
+SPEC CHECKSUMS:
+  CPAnimationSequence: 778717d28ae878edb13c62cff9cb16eae210832f
+  CustomBadge: 7640f2129d4ca323643d6dff3449ca3199336365
+
+PODFILE CHECKSUM: 75b8828738ff9f2e0a92ca40deddecab4162331e
+
+COCOAPODS: 1.1.1
