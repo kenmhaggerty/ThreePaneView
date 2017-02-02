@@ -379,7 +379,7 @@
 #pragma mark // Private Methods (Setup) //
 
 - (void)setup {
-    self.bouncesTop = YES;
+    self.bouncesTop = NO;
     self.bouncesBottom = NO;
     self.bouncesOpen = YES;
     self.bouncesClosed = NO;
