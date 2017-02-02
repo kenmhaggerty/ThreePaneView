@@ -60,6 +60,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, weak) id <ThreePaneViewDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UIScrollView *horizontalScrollView;
 @property (nonatomic, strong) IBOutlet UIScrollView *verticalScrollView;
+@property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *leftButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *rightButton;
 @property (nonatomic, getter=sideViewIsOpen) BOOL sideViewOpen;

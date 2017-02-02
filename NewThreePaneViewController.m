@@ -125,7 +125,6 @@
 @property (nonatomic, strong) IBOutlet UIView *mainViewContainer;
 @property (nonatomic, strong) IBOutlet UIView *sideViewContainer;
 @property (nonatomic, strong) IBOutlet UIView *topViewContainer;
-@property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, strong) IBOutlet UIView *visibleArea;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintHorizontalOffset;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintKeyboardHeight;
