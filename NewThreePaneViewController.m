@@ -172,11 +172,11 @@
 @synthesize horizontalOffset = _horizontalOffset;
 
 - (void)setSideViewOpen:(BOOL)sideViewOpen {
-    [self setSideViewOpen:sideViewOpen animated:NO];
+    [self setSideViewOpen:sideViewOpen animated:NO completion:nil];
 }
 
 - (void)setTopViewOpen:(BOOL)topViewOpen {
-    [self setTopViewOpen:topViewOpen animated:NO];
+    [self setTopViewOpen:topViewOpen animated:NO completion:nil];
 }
 
 - (void)setHorizontalOffset:(ThreePaneOffset *)horizontalOffset {
@@ -220,7 +220,7 @@
 }
 
 - (void)setKeyboardHeight:(CGFloat)keyboardHeight {
-    [self setKeyboardHeight:keyboardHeight animated:NO];
+    [self setKeyboardHeight:keyboardHeight animated:NO completion:nil];
 }
 
 - (CGFloat)keyboardHeight {
@@ -292,30 +292,46 @@
 
 #pragma mark // Public Methods (Setters) //
 
-- (void)setSideViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated {
+- (void)setSideViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
     _sideViewOpen = sideViewOpen;
     self.leftButton.title = sideViewOpen ? @"Done" : @"Side";
+    if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewWillChangePosition:)]) {
+        [self.delegate threePaneViewWillChangePosition:self];
+    }
     CGFloat contentOffSetX = sideViewOpen ? 0.0f : CGRectGetMinX(self.verticalScrollView.frame);
     [UIView animateWithDuration:(animated ? 0.33f : 0.0f) delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.horizontalScrollView.contentOffset = CGPointMake(contentOffSetX-self.horizontalScrollView.contentInset.left, self.horizontalScrollView.contentOffset.y);
-    } completion:nil];
+    } completion:^(BOOL finished) {
+        completionBlock(finished);
+        if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewDidChangePosition:)]) {
+            [self.delegate threePaneViewDidChangePosition:self];
+        }
+    }];
 }
 
-- (void)setTopViewOpen:(BOOL)topViewOpen animated:(BOOL)animated {
+- (void)setTopViewOpen:(BOOL)topViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
     _topViewOpen = topViewOpen;
     self.rightButton.title = topViewOpen ? @"Done" : @"Top";
+    if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewWillChangePosition:)]) {
+        [self.delegate threePaneViewWillChangePosition:self];
+    }
     CGFloat contentOffsetY = topViewOpen ? 0.0f : CGRectGetMinY(self.navigationBar.frame);
     [UIView animateWithDuration:(animated ? 0.33f : 0.0f) delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.verticalScrollView.contentOffset = CGPointMake(self.verticalScrollView.contentOffset.x, contentOffsetY-self.verticalScrollView.contentInset.top);
-    } completion:nil];
+    } completion:^(BOOL finished) {
+        completionBlock(finished);
+        if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewDidChangePosition:)]) {
+            [self.delegate threePaneViewDidChangePosition:self];
+        }
+    }];
 }
 
-- (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated {
+- (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
     self.constraintKeyboardHeight.constant = keyboardHeight;
     [self.view setNeedsUpdateConstraints];
     [UIView animateWithDuration:self.animationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
         [self.view layoutIfNeeded];
-    } completion:nil];
+    } completion:completionBlock];
 }
 
 #pragma mark // Delegated Methods (UIScrollViewDelegate) //
@@ -383,12 +399,12 @@
 
 - (IBAction)touchUpInside:(id)sender {
     if ([sender isEqual:self.leftButton]) {
-        [self setSideViewOpen:!self.sideViewIsOpen animated:YES];
+        [self setSideViewOpen:!self.sideViewIsOpen animated:YES completion:nil];
         return;
     }
     
     if ([sender isEqual:self.rightButton]) {
-        [self setTopViewOpen:!self.topViewIsOpen animated:YES];
+        [self setTopViewOpen:!self.topViewIsOpen animated:YES completion:nil];
         return;
     }
 }
@@ -411,11 +427,11 @@
         case UIGestureRecognizerStateFailed:
             if (self.horizontalScrollView.scrollEnabled) {
                 BOOL sideViewOpen = [self directionForVelocity:velocity.x withMinimum:10.0f andPosition:location.x/CGRectGetWidth(self.visibleArea.frame)];
-                [self setSideViewOpen:sideViewOpen animated:YES];
+                [self setSideViewOpen:sideViewOpen animated:YES completion:nil];
             }
             if (self.verticalScrollView.scrollEnabled) {
                 BOOL topViewOpen = [self directionForVelocity:velocity.y withMinimum:10.0f andPosition:location.y/CGRectGetHeight(self.visibleArea.frame)];
-                [self setTopViewOpen:topViewOpen animated:YES];
+                [self setTopViewOpen:topViewOpen animated:YES completion:nil];
             }
             self.horizontalScrollView.scrollEnabled = YES;
             self.verticalScrollView.scrollEnabled = YES;
@@ -443,14 +459,14 @@
     NSTimeInterval animationDuration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     self.animationDuration = animationDuration;
-    [self setKeyboardHeight:CGRectGetHeight(frame) animated:YES];
+    [self setKeyboardHeight:CGRectGetHeight(frame) animated:YES completion:nil];
 }
 
 - (void)keyboardWillDisappear:(NSNotification *)notification {
     NSTimeInterval animationDuration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     self.animationDuration = animationDuration;
-    [self setKeyboardHeight:0.0f animated:YES];
+    [self setKeyboardHeight:0.0f animated:YES completion:nil];
 }
 
 #pragma mark // Private Methods (Other) //

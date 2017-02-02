@@ -42,9 +42,22 @@ typedef enum : NSUInteger {
 
 #pragma mark - // NewThreePaneViewController //
 
+#pragma mark Forward References
+
+@class NewThreePaneViewController;
+
+#pragma mark Protocols
+
+@protocol ThreePaneViewDelegate <NSObject>
+@optional
+- (void)threePaneViewWillChangePosition:(NewThreePaneViewController *)sender;
+- (void)threePaneViewDidChangePosition:(NewThreePaneViewController *)sender;
+@end
+
 #pragma mark Public Interface
 
 @interface NewThreePaneViewController : UIViewController <UIScrollViewDelegate>
+@property (nonatomic, weak) id <ThreePaneViewDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UIScrollView *horizontalScrollView;
 @property (nonatomic, strong) IBOutlet UIScrollView *verticalScrollView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *leftButton;
@@ -61,8 +74,8 @@ typedef enum : NSUInteger {
 
 // SETTERS //
 
-- (void)setSideViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated;
-- (void)setTopViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated;
-- (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated;
+- (void)setSideViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+- (void)setTopViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+- (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
 
 @end
