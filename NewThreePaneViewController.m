@@ -158,6 +158,7 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 @property (nonatomic, strong) IBOutlet UIView *visibleArea;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintHorizontalOffset;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintKeyboardHeight;
+@property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic) NSTimeInterval animationDuration;
 @property (nonatomic) BOOL viewHasLoaded;
 
@@ -506,6 +507,10 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
     }
 }
 
+- (IBAction)viewWasTapped:(UITapGestureRecognizer *)gestureRecognizer {
+    [self setSideViewOpen:NO animated:YES completion:nil];
+}
+
 #pragma mark // Private Methods (Observers) //
 
 - (void)addObserversToKeyboard {
@@ -547,6 +552,7 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
     [UIView animateWithDuration:animationDuration animations:^{
         self.horizontalScrollView.contentOffset = CGPointMake(contentOffSetX-self.horizontalScrollView.contentInset.left, self.horizontalScrollView.contentOffset.y);
     } completion:^(BOOL finished) {
+        self.tapGestureRecognizer.enabled = sideViewOpen;
         if (completionBlock) {
             completionBlock(finished);
         }

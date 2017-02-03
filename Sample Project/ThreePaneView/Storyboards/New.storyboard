@@ -101,6 +101,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="delegate" destination="vWD-9l-eIJ" id="2Ht-nK-DKE"/>
+                                            <outletCollection property="gestureRecognizers" destination="uVw-fH-lQW" appends="YES" id="piU-bZ-cwE"/>
                                         </connections>
                                     </scrollView>
                                 </subviews>
@@ -145,12 +146,18 @@
                         <outlet property="navigationBar" destination="Cke-VV-hD0" id="Oec-mk-Nei"/>
                         <outlet property="rightButton" destination="GZh-Ja-62z" id="0wC-6J-1Su"/>
                         <outlet property="sideViewContainer" destination="SqG-Js-NZ9" id="Mdg-kZ-K7f"/>
+                        <outlet property="tapGestureRecognizer" destination="uVw-fH-lQW" id="iqC-9y-xBf"/>
                         <outlet property="topViewContainer" destination="OCH-9h-xrW" id="b2d-P5-gs1"/>
                         <outlet property="verticalScrollView" destination="Roy-K7-CDY" id="Cz7-TG-CCv"/>
                         <outlet property="visibleArea" destination="SqG-Js-NZ9" id="zCj-g0-U0t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mW6-eq-y33" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uVw-fH-lQW">
+                    <connections>
+                        <action selector="viewWasTapped:" destination="vWD-9l-eIJ" id="q8q-G6-WH1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="0" y="0"/>
         </scene>
