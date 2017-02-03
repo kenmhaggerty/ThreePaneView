@@ -32,9 +32,9 @@
 
 @end
 
-#pragma mark - // UIView (Subview) //
+#pragma mark - // UIView (Custom) //
 
-@interface UIView (Subview)
+@interface UIView (Custom)
 @property (nonatomic, weak, readonly) UIView *firstResponder;
 - (void)iterateOverSubviews:(BOOL (^)(UIView *))block;
 - (BOOL)eventuallyContainsSubview:(UIView *)view;
@@ -45,7 +45,7 @@
 
 #pragma mark Implementation
 
-@implementation UIView (Subview)
+@implementation UIView (Custom)
 
 #pragma mark // Setters and Getters (Subview) //
 
