@@ -58,6 +58,9 @@ typedef enum : NSUInteger {
 
 @interface NewThreePaneViewController : UIViewController <UIScrollViewDelegate>
 @property (nonatomic, weak) id <ThreePaneViewDelegate> delegate;
+@property (nonatomic, strong) UIView *mainView;
+@property (nonatomic, strong) UIView *sideView;
+@property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) IBOutlet UIScrollView *horizontalScrollView;
 @property (nonatomic, strong) IBOutlet UIScrollView *verticalScrollView;
 @property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
@@ -72,6 +75,10 @@ typedef enum : NSUInteger {
 @property (nonatomic) BOOL bouncesClosed;
 @property (nonatomic) CGFloat keyboardHeight;
 @property (nonatomic) CGSize scrollPadding;
+
+// INITS //
+
+- (id)initWithMainView:(UIView *)mainView sideView:(UIView *)sideView topView:(UIView *)topView;
 
 // SETTERS //
 

@@ -38,6 +38,9 @@
 @property (nonatomic, weak, readonly) UIView *firstResponder;
 - (void)iterateOverSubviews:(BOOL (^)(UIView *))block;
 - (BOOL)eventuallyContainsSubview:(UIView *)view;
+- (void)addConstraintsToCenterView:(UIView *)view;
+- (void)addConstraintsToScaleView:(UIView *)view withScale:(CGFloat)scale;
+- (void)fillWithView:(UIView *)view;
 @end
 
 #pragma mark Implementation
@@ -83,6 +86,28 @@
         return !containsSubview;
     }];
     return containsSubview;
+}
+
+- (void)addConstraintsToCenterView:(UIView *)view {
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f]];
+}
+
+- (void)addConstraintsToScaleView:(UIView *)view withScale:(CGFloat)scale {
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:scale constant:0.0f]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:scale constant:0.0f]];
+}
+
+- (void)fillWithView:(UIView *)view {
+    if (!view) {
+        return;
+    }
+    
+    [self addSubview:view];
+    [self addConstraintsToCenterView:view];
+    [self addConstraintsToScaleView:view withScale:1.0f];
+    [self setNeedsUpdateConstraints];
+    [self layoutIfNeeded];
 }
 
 @end
@@ -170,6 +195,42 @@
 
 @synthesize horizontalOffset = _horizontalOffset;
 
+- (void)setMainView:(UIView *)mainView {
+    if ((!mainView && !self.mainView) || [mainView isEqual:self.mainView]) {
+        return;
+    }
+    
+    [self.mainView removeFromSuperview];
+    
+    _mainView = mainView;
+    
+    [self.mainViewContainer fillWithView:mainView];
+}
+
+- (void)setSideView:(UIView *)sideView {
+    if ((!sideView && !self.sideView) || [sideView isEqual:self.sideView]) {
+        return;
+    }
+    
+    [self.sideView removeFromSuperview];
+    
+    _sideView = sideView;
+    
+    [self.sideViewContainer fillWithView:sideView];
+}
+
+- (void)setTopView:(UIView *)topView {
+    if ((!topView && !self.topView) || [topView isEqual:self.topView]) {
+        return;
+    }
+    
+    [self.topView removeFromSuperview];
+    
+    _topView = topView;
+    
+    [self.topViewContainer fillWithView:topView];
+}
+
 - (void)setSideViewOpen:(BOOL)sideViewOpen {
     [self setSideViewOpen:sideViewOpen animated:NO completion:nil];
 }
@@ -233,9 +294,29 @@
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         [self setup];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (id)initWithMainView:(UIView *)mainView sideView:(UIView *)sideView topView:(UIView *)topView {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        [self setup];
+        
+        self.mainView = mainView;
+        self.sideView = sideView;
+        self.topView = topView;
     }
     return self;
 }
