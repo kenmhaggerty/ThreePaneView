@@ -86,4 +86,9 @@ typedef enum : NSUInteger {
 - (void)setTopViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
 - (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
 
+// ACTIONS //
+
+- (IBAction)popSideViewAnimated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+- (IBAction)popTopViewAnimated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+
 @end

@@ -394,6 +394,20 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
     } completion:completionBlock];
 }
 
+#pragma mark // Public Methods (Actions) //
+
+- (IBAction)popSideViewAnimated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
+    [self setSideViewOpen:NO animated:animated completion:^(BOOL finished) {
+        _sideView = nil;
+    }];
+}
+
+- (IBAction)popTopViewAnimated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
+    [self setTopViewOpen:NO animated:animated completion:^(BOOL finished) {
+        _topView = nil;
+    }];
+}
+
 #pragma mark // Delegated Methods (UIScrollViewDelegate) //
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
