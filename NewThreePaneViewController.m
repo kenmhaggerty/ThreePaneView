@@ -144,6 +144,11 @@
 
 #pragma mark - // NewThreePaneViewController //
 
+#pragma mark Private Constants
+
+NSTimeInterval const ThreePaneAnimationDurationFast = 0.18f;
+NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
+
 #pragma mark Private Interface
 
 @interface NewThreePaneViewController () <UITextFieldDelegate>
@@ -153,8 +158,6 @@
 @property (nonatomic, strong) IBOutlet UIView *visibleArea;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintHorizontalOffset;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintKeyboardHeight;
-//@property (nonatomic, strong) UIPanGestureRecognizer *horizontalPanGesture;
-//@property (nonatomic, strong) UIPanGestureRecognizer *verticalPanGesture;
 @property (nonatomic) NSTimeInterval animationDuration;
 @property (nonatomic) BOOL viewHasLoaded;
 
@@ -183,6 +186,8 @@
 
 // OTHER //
 
+- (void)setSideViewOpen:(BOOL)sideViewOpen withAnimationDuration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completionBlock;
+- (void)setTopViewOpen:(BOOL)topViewOpen withAnimationDuration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completionBlock;
 - (BOOL)directionForVelocity:(CGFloat)velocity withMinimum:(CGFloat)minimum andPosition:(CGFloat)position;
 
 @end
@@ -373,37 +378,11 @@
 #pragma mark // Public Methods (Setters) //
 
 - (void)setSideViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
-    _sideViewOpen = sideViewOpen;
-    self.leftButton.title = sideViewOpen ? @"Done" : @"Side";
-    if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewWillChangePosition:)]) {
-        [self.delegate threePaneViewWillChangePosition:self];
-    }
-    CGFloat contentOffSetX = sideViewOpen ? 0.0f : CGRectGetMinX(self.verticalScrollView.frame);
-    [UIView animateWithDuration:(animated ? 0.33f : 0.0f) delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        self.horizontalScrollView.contentOffset = CGPointMake(contentOffSetX-self.horizontalScrollView.contentInset.left, self.horizontalScrollView.contentOffset.y);
-    } completion:^(BOOL finished) {
-        completionBlock(finished);
-        if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewDidChangePosition:)]) {
-            [self.delegate threePaneViewDidChangePosition:self];
-        }
-    }];
+    [self setSideViewOpen:sideViewOpen withAnimationDuration:(animated ? ThreePaneAnimationDurationSlow : 0.0f) completion:completionBlock];
 }
 
 - (void)setTopViewOpen:(BOOL)topViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
-    _topViewOpen = topViewOpen;
-    self.rightButton.title = topViewOpen ? @"Done" : @"Top";
-    if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewWillChangePosition:)]) {
-        [self.delegate threePaneViewWillChangePosition:self];
-    }
-    CGFloat contentOffsetY = topViewOpen ? 0.0f : CGRectGetMinY(self.navigationBar.frame);
-    [UIView animateWithDuration:(animated ? 0.33f : 0.0f) delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        self.verticalScrollView.contentOffset = CGPointMake(self.verticalScrollView.contentOffset.x, contentOffsetY-self.verticalScrollView.contentInset.top);
-    } completion:^(BOOL finished) {
-        completionBlock(finished);
-        if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewDidChangePosition:)]) {
-            [self.delegate threePaneViewDidChangePosition:self];
-        }
-    }];
+    [self setTopViewOpen:topViewOpen withAnimationDuration:(animated ? ThreePaneAnimationDurationSlow : 0.0f) completion:completionBlock];
 }
 
 - (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
@@ -417,6 +396,10 @@
 #pragma mark // Delegated Methods (UIScrollViewDelegate) //
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!self.viewHasLoaded) {
+        return;
+    }
+    
     if ([scrollView isEqual:self.horizontalScrollView]) {
         if (!self.bouncesOpen) {
             [self.horizontalScrollView setContentOffset:CGPointMake(fmaxf(self.horizontalScrollView.contentOffset.x, -1.0f*self.horizontalScrollView.contentInset.left), self.horizontalScrollView.contentOffset.y)];
@@ -430,8 +413,23 @@
             [self.verticalScrollView setContentOffset:CGPointMake(self.verticalScrollView.contentOffset.x, fmaxf(self.verticalScrollView.contentOffset.y, -1.0f*self.verticalScrollView.contentInset.top))];
         }
         if (!self.bouncesBottom) {
-            [self.verticalScrollView setContentOffset:CGPointMake(self.verticalScrollView.contentOffset.x, fminf(self.verticalScrollView.contentOffset.y, CGRectGetMinY(self.mainViewContainer.frame)-self.verticalScrollView.contentInset.top))];
+            [self.verticalScrollView setContentOffset:CGPointMake(self.verticalScrollView.contentOffset.x, fminf(self.verticalScrollView.contentOffset.y, CGRectGetMinY(self.navigationBar.frame)-self.verticalScrollView.contentInset.top))];
         }
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if ([scrollView isEqual:self.horizontalScrollView] && self.horizontalScrollView.isScrollEnabled) {
+        BOOL sideViewOpen = [self directionForVelocity:velocity.x withMinimum:40.0f andPosition:targetContentOffset->x/(self.horizontalScrollView.contentSize.width-CGRectGetWidth(self.horizontalScrollView.frame))];
+        CGFloat offset = sideViewOpen ? 0.0f-self.horizontalScrollView.contentInset.left : CGRectGetMinX(self.verticalScrollView.frame);
+        *targetContentOffset = CGPointMake(offset, targetContentOffset->y);
+        [self setSideViewOpen:sideViewOpen withAnimationDuration:ThreePaneAnimationDurationFast completion:nil];
+    }
+    if ([scrollView isEqual:self.verticalScrollView] && self.verticalScrollView.isScrollEnabled) {
+        BOOL topViewOpen = [self directionForVelocity:velocity.y withMinimum:40.0f andPosition:targetContentOffset->y/(self.verticalScrollView.contentSize.height-CGRectGetHeight(self.verticalScrollView.frame))];
+        CGFloat offset = topViewOpen ? 0.0f-self.verticalScrollView.contentInset.top : CGRectGetMinY(self.navigationBar.frame);
+        *targetContentOffset = CGPointMake(targetContentOffset->x, offset);
+        [self setTopViewOpen:topViewOpen withAnimationDuration:ThreePaneAnimationDurationFast completion:nil];
     }
 }
 
@@ -460,10 +458,6 @@
 #pragma mark // Private Methods (Setup) //
 
 - (void)setup {
-    self.bouncesTop = NO;
-    self.bouncesBottom = NO;
-    self.bouncesOpen = YES;
-    self.bouncesClosed = NO;
     self.scrollPadding = CGSizeMake(0.0f, 8.0f);
     
     self.viewHasLoaded = NO;
@@ -493,7 +487,6 @@
 
 - (void)scrollViewDidPan:(UIPanGestureRecognizer *)gestureRecognizer {
     CGPoint velocity = [gestureRecognizer velocityInView:self.visibleArea];
-    CGPoint location = [gestureRecognizer locationInView:self.visibleArea];
     BOOL horizontalEnabled, verticalEnabled;
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
@@ -505,16 +498,9 @@
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
-            if (self.horizontalScrollView.scrollEnabled) {
-                BOOL sideViewOpen = [self directionForVelocity:velocity.x withMinimum:10.0f andPosition:location.x/CGRectGetWidth(self.visibleArea.frame)];
-                [self setSideViewOpen:sideViewOpen animated:YES completion:nil];
-            }
-            if (self.verticalScrollView.scrollEnabled) {
-                BOOL topViewOpen = [self directionForVelocity:velocity.y withMinimum:10.0f andPosition:location.y/CGRectGetHeight(self.visibleArea.frame)];
-                [self setTopViewOpen:topViewOpen animated:YES completion:nil];
-            }
             self.horizontalScrollView.scrollEnabled = YES;
             self.verticalScrollView.scrollEnabled = YES;
+            break;
         default:
             break;
     }
@@ -551,9 +537,55 @@
 
 #pragma mark // Private Methods (Other) //
 
+- (void)setSideViewOpen:(BOOL)sideViewOpen withAnimationDuration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completionBlock {
+    _sideViewOpen = sideViewOpen;
+    self.leftButton.title = sideViewOpen ? @"Done" : @"Side";
+    if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewWillChangePosition:)]) {
+        [self.delegate threePaneViewWillChangePosition:self];
+    }
+    CGFloat contentOffSetX = sideViewOpen ? 0.0f : CGRectGetMinX(self.verticalScrollView.frame);
+    [UIView animateWithDuration:animationDuration animations:^{
+        self.horizontalScrollView.contentOffset = CGPointMake(contentOffSetX-self.horizontalScrollView.contentInset.left, self.horizontalScrollView.contentOffset.y);
+    } completion:^(BOOL finished) {
+        if (completionBlock) {
+            completionBlock(finished);
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewDidChangePosition:)]) {
+            [self.delegate threePaneViewDidChangePosition:self];
+        }
+    }];
+}
+
+- (void)setTopViewOpen:(BOOL)topViewOpen withAnimationDuration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completionBlock {
+    _topViewOpen = topViewOpen;
+    self.rightButton.title = topViewOpen ? @"Done" : @"Top";
+    if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewWillChangePosition:)]) {
+        [self.delegate threePaneViewWillChangePosition:self];
+    }
+    CGFloat contentOffsetY = topViewOpen ? 0.0f : CGRectGetMinY(self.navigationBar.frame);
+    [UIView animateWithDuration:animationDuration animations:^{
+        self.verticalScrollView.contentOffset = CGPointMake(self.verticalScrollView.contentOffset.x, contentOffsetY-self.verticalScrollView.contentInset.top);
+    } completion:^(BOOL finished) {
+        if (completionBlock) {
+            completionBlock(finished);
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewDidChangePosition:)]) {
+            [self.delegate threePaneViewDidChangePosition:self];
+        }
+    }];
+}
+
 - (BOOL)directionForVelocity:(CGFloat)velocity withMinimum:(CGFloat)minimum andPosition:(CGFloat)position {
+    if (position < 0) {
+        return YES;
+    }
+    
+    if (position > 1) {
+        return NO;
+    }
+    
     if (fabs(velocity) < minimum) {
-        return (position >= 0.5f);
+        return (position <= 0.5f);
     }
     
     return (velocity > 0);
