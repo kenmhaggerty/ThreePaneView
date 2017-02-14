@@ -12,26 +12,6 @@
 
 #import "NewThreePaneViewController.h"
 
-#pragma mark - // ThreePaneOffset //
-
-#pragma mark Implementation
-
-@implementation ThreePaneOffset
-
-#pragma mark // Inits and Loads //
-
-- (id)initWithOffset:(CGFloat)offset units:(ThreePaneOffsetUnit)units direction:(ThreePaneOffsetDirection)direction {
-    self = [super init];
-    if (self) {
-        self.value = offset;
-        self.units = units;
-        self.direction = direction;
-    }
-    return self;
-}
-
-@end
-
 #pragma mark - // UIView (Custom) //
 
 @interface UIView (Custom)
@@ -155,8 +135,7 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 @property (nonatomic, strong) IBOutlet UIView *mainViewContainer;
 @property (nonatomic, strong) IBOutlet UIView *sideViewContainer;
 @property (nonatomic, strong) IBOutlet UIView *topViewContainer;
-@property (nonatomic, strong) IBOutlet UIView *visibleArea;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintHorizontalOffset;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintSideViewWidth;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *constraintKeyboardHeight;
 @property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic) NSTimeInterval animationDuration;
@@ -198,8 +177,6 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 @implementation NewThreePaneViewController
 
 #pragma mark // Setters and Getters (Public) //
-
-@synthesize horizontalOffset = _horizontalOffset;
 
 - (void)setMainView:(UIView *)mainView {
     if ((!mainView && !self.mainView) || [mainView isEqual:self.mainView]) {
@@ -245,44 +222,8 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
     [self setTopViewOpen:topViewOpen animated:NO completion:nil];
 }
 
-- (void)setHorizontalOffset:(ThreePaneOffset *)horizontalOffset {
-    _horizontalOffset = horizontalOffset;
-    
-    CGFloat offset = 0.0f;
-    switch (horizontalOffset.units) {
-        case ThreePaneUnitPoints:
-            switch (horizontalOffset.direction) {
-                case ThreePaneDirectionIn:
-                    offset = CGRectGetWidth(self.horizontalScrollView.frame)-horizontalOffset.value;
-                    break;
-                case ThreePaneDirectionOut:
-                    offset = horizontalOffset.value;
-                    break;
-            }
-            break;
-        case ThreePaneUnitPercent:
-            switch (horizontalOffset.direction) {
-                case ThreePaneDirectionIn:
-                    offset = (1.0f-horizontalOffset.value)*CGRectGetWidth(self.horizontalScrollView.frame);
-                    break;
-                case ThreePaneDirectionOut:
-                    offset = horizontalOffset.value*CGRectGetWidth(self.horizontalScrollView.frame);
-                    break;
-            }
-            break;
-    }
-    self.constraintHorizontalOffset.constant = offset;
-    [self.view setNeedsUpdateConstraints];
-    [self.view layoutIfNeeded];
-}
-
-- (ThreePaneOffset *)horizontalOffset {
-    if (_horizontalOffset) {
-        return _horizontalOffset;
-    }
-    
-    self.horizontalOffset = [[ThreePaneOffset alloc] initWithOffset:80.0f units:ThreePaneUnitPoints direction:ThreePaneDirectionIn];
-    return self.horizontalOffset;
+- (void)setSideViewWidth:(CGFloat)sideViewWidth {
+    [self setSideViewWidth:sideViewWidth animated:NO];
 }
 
 - (void)setKeyboardHeight:(CGFloat)keyboardHeight {
@@ -343,8 +284,8 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
-    CGFloat topInset = CGRectGetMinY(self.visibleArea.frame);
-    CGFloat bottomInset = CGRectGetHeight(self.visibleArea.superview.frame)-CGRectGetMaxY(self.visibleArea.frame);
+    CGFloat topInset = CGRectGetMinY(self.sideViewContainer.frame);
+    CGFloat bottomInset = CGRectGetHeight(self.sideViewContainer.superview.frame)-CGRectGetMaxY(self.sideViewContainer.frame);
     
     self.verticalScrollView.contentInset = UIEdgeInsetsMake(topInset, 0.0f, bottomInset, 0.0f);
     self.verticalScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(topInset, 0.0f, bottomInset, 0.0f);
@@ -362,14 +303,12 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
         return;
     }
     
-    CGFloat topInset = CGRectGetMinY(self.visibleArea.frame);
-    CGFloat bottomInset = CGRectGetHeight(self.visibleArea.superview.frame)-CGRectGetMaxY(self.visibleArea.frame);
+    CGFloat topInset = CGRectGetMinY(self.sideViewContainer.frame);
+    CGFloat bottomInset = CGRectGetHeight(self.sideViewContainer.superview.frame)-CGRectGetMaxY(self.sideViewContainer.frame);
     
     self.verticalScrollView.contentInset = UIEdgeInsetsMake(topInset, 0.0f, bottomInset, 0.0f);
     self.verticalScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(topInset, 0.0f, bottomInset, 0.0f);
     self.topViewOpen = NO;
-    
-    self.horizontalOffset = self.horizontalOffset;
     
     self.sideViewOpen = NO;
     
@@ -384,6 +323,20 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 
 - (void)setTopViewOpen:(BOOL)topViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
     [self setTopViewOpen:topViewOpen withAnimationDuration:(animated ? ThreePaneAnimationDurationSlow : 0.0f) completion:completionBlock];
+}
+
+- (void)setSideViewWidth:(CGFloat)sideViewWidth animated:(BOOL)animated {
+    if (sideViewWidth == self.sideViewWidth) {
+        return;
+    }
+    
+    _sideViewWidth = sideViewWidth;
+    
+    self.constraintSideViewWidth.constant = sideViewWidth;
+    [self.view setNeedsUpdateConstraints];
+    [UIView animateWithDuration:(animated ? ThreePaneAnimationDurationSlow : 0.0f) animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock {
@@ -501,7 +454,7 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 #pragma mark // Private Methods (Gestures) //
 
 - (void)scrollViewDidPan:(UIPanGestureRecognizer *)gestureRecognizer {
-    CGPoint velocity = [gestureRecognizer velocityInView:self.visibleArea];
+    CGPoint velocity = [gestureRecognizer velocityInView:self.view];
     BOOL horizontalEnabled, verticalEnabled;
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:

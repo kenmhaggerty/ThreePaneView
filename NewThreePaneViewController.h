@@ -12,34 +12,6 @@
 
 #import <UIKit/UIKit.h>
 
-#pragma mark - // ThreePaneOffset //
-
-#pragma mark Public Constants
-
-typedef enum : NSUInteger {
-    ThreePaneUnitPoints,
-    ThreePaneUnitPercent
-} ThreePaneOffsetUnit;
-
-typedef enum : NSUInteger {
-    ThreePaneDirectionIn,
-    ThreePaneDirectionOut
-} ThreePaneOffsetDirection;
-
-#pragma mark Public Interface
-
-@interface ThreePaneOffset : NSObject
-@property (nonatomic) CGFloat value;
-@property (nonatomic) ThreePaneOffsetUnit units;
-@property (nonatomic) ThreePaneOffsetDirection direction;
-
-// INITS //
-
-- (id)initWithOffset:(CGFloat)offset units:(ThreePaneOffsetUnit)units direction:(ThreePaneOffsetDirection)direction NS_DESIGNATED_INITIALIZER;
-- (id)init NS_UNAVAILABLE;
-
-@end
-
 #pragma mark - // NewThreePaneViewController //
 
 #pragma mark Forward References
@@ -68,7 +40,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *rightButton;
 @property (nonatomic, getter=sideViewIsOpen) BOOL sideViewOpen;
 @property (nonatomic, getter=topViewIsOpen) BOOL topViewOpen;
-@property (nonatomic) ThreePaneOffset *horizontalOffset;
+@property (nonatomic) CGFloat sideViewWidth;
 @property (nonatomic) BOOL bouncesTop;
 @property (nonatomic) BOOL bouncesBottom;
 @property (nonatomic) BOOL bouncesOpen;
