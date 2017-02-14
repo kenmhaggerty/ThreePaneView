@@ -426,9 +426,13 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 #pragma mark // Private Methods (Setup) //
 
 - (void)setup {
-    self.scrollPadding = CGSizeMake(0.0f, 8.0f);
-    
     self.viewHasLoaded = NO;
+    
+    self.scrollPadding = CGSizeMake(0.0f, 8.0f);
+    self.bouncesTop = YES;
+    self.bouncesBottom = YES;
+    self.bouncesOpen = YES;
+    self.bouncesClosed = YES;
     
     [self addObserversToKeyboard];
 }
