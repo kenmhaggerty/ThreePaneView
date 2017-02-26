@@ -2,54 +2,91 @@
 //  ThreePaneViewController.h
 //  ThreePaneView
 //
-//  Created by Ken M. Haggerty on 2/1/13.
-//  Copyright (c) 2013-2017 Ken M. Haggerty. All rights reserved.
+//  Created by Ken M. Haggerty on 1/30/17.
+//  Copyright © 2017 Ken M. Haggerty. All rights reserved.
 //
 
 #pragma mark - // NOTES (Public) //
-
-//  This UIViewController creates a three-pane sliding UI,
-//  wherein a sideView is hidden behind a double-height
-//  containerView (private) that contains a mainView and
-//  a topView. The mainView is the primary view. The
-//  topView is a secondary view that can be viewed by
-//  sliding the containerView down. The sideView is a
-//  tertiary view that can be viewed by sliding the
-//  containerView to the right. The containerView contains
-//  two CustomButtons that can be tapped to animated the
-//  containerView to reveal the topView or sideView.
 
 #pragma mark - // IMPORTS (Public) //
 
 #import <UIKit/UIKit.h>
 
-#pragma mark - // ThreePaneView //
-
-#pragma mark Public Imports
-
-#import "ThreePaneViewControllerProtocol.h"
-#import "ThreePaneChildViewProtocol.h"
+#pragma mark - // InitialViewController //
 
 #pragma mark Public Interface
 
-@interface ThreePaneViewController : UIViewController <ThreePaneViewControllerProtocol>
-@property (nonatomic, strong) UIViewController <ThreePaneChildViewProtocol> *mainViewController;
-@property (nonatomic, strong) UIViewController <ThreePaneChildViewProtocol> *topViewController;
-@property (nonatomic, strong) UIViewController <ThreePaneChildViewProtocol> *sideViewController;
-@property (nonatomic) BOOL canViewMainView;
-@property (nonatomic) BOOL canViewTopView;
-@property (nonatomic) BOOL canViewSideView;
-@property (nonatomic, readonly) BOOL isViewingMainView;
-@property (nonatomic, readonly) BOOL isViewingTopView;
-@property (nonatomic, readonly) BOOL isViewingSideView;
+@interface InitialViewController : UIViewController
+@property (nonatomic, strong) IBOutlet UIViewController *mainViewController;
+@property (nonatomic, strong) IBOutlet UIViewController *sideViewController;
+@property (nonatomic, strong) IBOutlet UIViewController *topViewController;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
+@end
 
-- (void)viewMainView:(BOOL)animated;
-- (void)viewTopView:(BOOL)animated;
-- (void)viewSideView:(BOOL)animated;
-- (void)popMainView:(BOOL)animated;
-- (void)popTopView:(BOOL)animated;
-- (void)popSideView:(BOOL)animated;
+//#pragma mark - // KMHPaneViewProtocol //
+//
+//#pragma mark Protocol
+//
+//@protocol KMHPaneViewProtocol <NSObject>
+//@optional
+//@property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
+//@property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
+//@end
 
-- (void)setAsContainerViewBackground:(UIImage *)backgroundImage;
+#pragma mark - // ThreePaneViewController //
+
+#pragma mark Forward References
+
+@class ThreePaneViewController;
+
+#pragma mark Protocols
+
+@protocol ThreePaneViewDelegate <NSObject>
+@optional
+- (void)threePaneViewWillChangePosition:(ThreePaneViewController *)sender;
+- (void)threePaneViewDidChangePosition:(ThreePaneViewController *)sender;
+@end
+
+#pragma mark Public Interface
+
+@interface ThreePaneViewController : UIViewController <UIScrollViewDelegate>
+@property (nonatomic, weak) id <ThreePaneViewDelegate> delegate;
+@property (nonatomic, strong) UIView *mainView;
+@property (nonatomic, strong) UIView *sideView;
+@property (nonatomic, strong) UIView *topView;
+@property (nonatomic, strong) IBOutlet UIScrollView *horizontalScrollView;
+@property (nonatomic, strong) IBOutlet UIScrollView *verticalScrollView;
+@property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
+@property (nonatomic, getter=sideViewIsOpen) BOOL sideViewOpen;
+@property (nonatomic, getter=topViewIsOpen) BOOL topViewOpen;
+@property (nonatomic) CGFloat sideViewWidth;
+@property (nonatomic) BOOL bouncesTop;
+@property (nonatomic) BOOL bouncesBottom;
+@property (nonatomic) BOOL bouncesOpen;
+@property (nonatomic) BOOL bouncesClosed;
+@property (nonatomic) CGFloat keyboardHeight;
+@property (nonatomic) CGSize scrollPadding;
+@property (nonatomic) CGFloat overlap;
+
+// INITS //
+
+- (id)initWithMainView:(UIView *)mainView sideView:(UIView *)sideView topView:(UIView *)topView;
+
+// SETTERS //
+
+- (void)setSideViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+- (void)setTopViewOpen:(BOOL)sideViewOpen animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+- (void)setSideViewWidth:(CGFloat)sideViewWidth animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+- (void)setKeyboardHeight:(CGFloat)keyboardHeight animated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+
+// ACTIONS //
+
+- (IBAction)toggleSideView:(id)sender;
+- (IBAction)toggleTopView:(id)sender;
+- (IBAction)popSideViewAnimated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
+- (IBAction)popTopViewAnimated:(BOOL)animated completion:(void (^)(BOOL))completionBlock;
 
 @end
