@@ -59,7 +59,7 @@
                         <outlet property="sideViewButton" destination="xeA-X3-fFL" id="oo4-GM-ANc"/>
                         <outlet property="topViewButton" destination="pCq-c6-vBP" id="ahv-Vz-n5Q"/>
                         <segue destination="riu-FF-tuc" kind="custom" identifier="topViewController" customClass="DATOutletSegue" id="9Ms-Cb-wVF"/>
-                        <segue destination="1L2-L7-1Ts" kind="custom" identifier="mainViewController" customClass="DATOutletSegue" id="pSt-wL-bUc"/>
+                        <segue destination="Ebx-JC-I06" kind="custom" identifier="mainViewController" customClass="DATOutletSegue" id="pSt-wL-bUc"/>
                         <segue destination="nqg-Ma-npy" kind="custom" identifier="sideViewController" customClass="DATOutletSegue" id="3Bu-xp-OeV"/>
                     </connections>
                 </viewController>
@@ -100,7 +100,7 @@
         <!--Main View-->
         <scene sceneID="2xx-gr-JjU">
             <objects>
-                <viewController id="1L2-L7-1Ts" sceneMemberID="viewController">
+                <viewController id="1L2-L7-1Ts" customClass="KMHPaneViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Jv-HC-t5o"/>
                         <viewControllerLayoutGuide type="bottom" id="8uh-x7-awD"/>
@@ -137,15 +137,19 @@
                         <barButtonItem key="rightBarButtonItem" title="D" id="yp0-5B-qsa"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="sideViewButton" destination="9R5-bb-Mtk" id="mZB-dJ-bHb"/>
+                        <outlet property="topViewButton" destination="yp0-5B-qsa" id="Zgy-mQ-Sjn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vb8-4w-Na0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012.5" y="2463.75"/>
+            <point key="canvasLocation" x="2010" y="2463.75"/>
         </scene>
         <!--Second View-->
         <scene sceneID="hHX-MN-m2Y">
             <objects>
-                <viewController id="C2f-D6-09m" sceneMemberID="viewController">
+                <viewController id="C2f-D6-09m" customClass="KMHPaneViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7uJ-Jl-bVp"/>
                         <viewControllerLayoutGuide type="bottom" id="K0J-DX-6fP"/>
@@ -177,10 +181,32 @@
                         <barButtonItem key="leftBarButtonItem" title="E" id="bvM-py-ReO"/>
                         <barButtonItem key="rightBarButtonItem" title="F" id="fFb-rZ-uaA"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sideViewButton" destination="bvM-py-ReO" id="ks4-Qk-UWW"/>
+                        <outlet property="topViewButton" destination="fFb-rZ-uaA" id="dln-7d-u1k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHY-os-K5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2025" y="2464"/>
+            <point key="canvasLocation" x="3022.5" y="2463.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VkD-M7-Lu0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ebx-JC-I06" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h1V-bG-3uw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1L2-L7-1Ts" kind="relationship" relationship="rootViewController" id="Pgi-lj-3od"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2U7-qI-flL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012.5" y="2463.75"/>
         </scene>
     </scenes>
 </document>

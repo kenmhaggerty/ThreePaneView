@@ -35,6 +35,84 @@
 
 @end
 
+#pragma mark - // NSObject (Swizzled) //
+
+#pragma mark Imports
+
+#import <objc/runtime.h>
+
+#pragma mark Category Interface
+
+@interface NSObject (Swizzled)
+- (void)swizzleMethod:(SEL)originalSelector withMethod:(SEL)swizzledSelector;
+@end
+
+#pragma mark Implementation
+
+@implementation NSObject (Swizzled)
+
+#pragma mark // Swizzled Methods //
+
+// copied w/ modifications via Mattt Thompson's tutorial at http://nshipster.com/method-swizzling/
+- (void)swizzleMethod:(SEL)originalSelector withMethod:(SEL)swizzledSelector {
+    Class class = [self class];
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+    
+    // When swizzling a class method, use the following:
+    // Class class = object_getClass((id)self);
+    // ...
+    // Method originalMethod = class_getClassMethod(class, originalSelector);
+    // Method swizzledMethod = class_getClassMethod(class, swizzledSelector);
+    
+    BOOL success = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
+    if (success) {
+        class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    }
+    else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+}
+
+@end
+
+#pragma mark - // UINavigationController (Notifications) //
+
+#pragma mark Notifications
+
+NSString * const UINavigationControllerNotificationObjectKey = @"object";
+
+NSString * const UINavigationControllerWillPushViewController = @"kUINavigationControllerWillPushViewController";
+
+#pragma mark Category Interface
+
+@interface UINavigationController (Notifications)
+@end
+
+#pragma mark Implementation
+
+@implementation UINavigationController (Notifications)
+
+#pragma mark // Inits and Loads //
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self swizzleMethod:@selector(pushViewController:animated:) withMethod:@selector(swizzled_pushViewController:animated:)];
+    });
+}
+
+#pragma mark // Overwritten Methods //
+
+- (void)swizzled_pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [self swizzled_pushViewController:viewController animated:animated];
+    
+    NSDictionary *userInfo = @{UINavigationControllerNotificationObjectKey : viewController};
+    [[NSNotificationCenter defaultCenter] postNotificationName:UINavigationControllerWillPushViewController object:self userInfo:userInfo];
+}
+
+@end
+
 #pragma mark - // InitialViewController //
 
 #pragma mark Private Imports
@@ -45,34 +123,25 @@
 
 @interface InitialViewController ()
 @property (nonatomic, strong) ThreePaneViewController *threePaneViewController;
+
+// OBSERVERS //
+
+- (void)addObserversToNavigationController:(UINavigationController *)navigationController;
+- (void)removeObserversFromNavigationController:(UINavigationController *)navigationController;
+
+// RESPONDERS //
+
+- (void)navigationControllerWillPushViewController:(NSNotification *)notification;
+
+// OTHER //
+
+- (void)setPaneViewButtonsForViewController:(UIViewController <KMHPaneViewProtocol> *)viewController;
+
 @end
 
 #pragma mark Implementation
 
 @implementation InitialViewController
-
-#pragma mark // Setters and Getters (Private) //
-
-- (ThreePaneViewController *)threePaneViewController {
-    if (_threePaneViewController) {
-        return _threePaneViewController;
-    }
-    
-    _threePaneViewController = self.threePaneViewController = [UIStoryboard storyboardWithName:@"ThreePaneView" bundle:nil].instantiateInitialViewController;
-    _threePaneViewController.mainView = self.mainViewController.view;
-    _threePaneViewController.sideView = self.sideViewController.view;
-    _threePaneViewController.topView = self.topViewController.view;
-    [_threePaneViewController.navigationItem overwriteWithItem:self.navigationItem];
-    if (self.sideViewButton) {
-        self.sideViewButton.target = _threePaneViewController;
-        self.sideViewButton.action = @selector(toggleSideView:);
-    }
-    if (self.topViewButton) {
-        self.topViewButton.target = _threePaneViewController;
-        self.topViewButton.action = @selector(toggleTopView:);
-    }
-    return self.threePaneViewController;
-}
 
 #pragma mark // Inits and Loads //
 
@@ -80,6 +149,31 @@
     [super viewDidLoad];
     
     [self loadSegueControllers];
+    
+    self.threePaneViewController = [UIStoryboard storyboardWithName:@"ThreePaneView" bundle:nil].instantiateInitialViewController;
+    self.threePaneViewController.mainView = self.mainViewController.view;
+    self.threePaneViewController.sideView = self.sideViewController.view;
+    self.threePaneViewController.topView = self.topViewController.view;
+    [self.threePaneViewController.navigationItem overwriteWithItem:self.navigationItem];
+    
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithObjects:self, self.mainViewController, self.sideViewController, self.topViewController, nil];
+    UIViewController *viewController;
+    while (viewControllers.count) {
+        viewController = viewControllers.firstObject;
+        [viewControllers removeObject:viewController];
+        
+        if ([viewController isKindOfClass:[UINavigationController class]]) {
+            [self addObserversToNavigationController:(UINavigationController *)viewController];
+            [viewControllers addObject:((UINavigationController *)viewController).topViewController];
+            continue;
+        }
+        
+        if (![viewController conformsToProtocol:@protocol(KMHPaneViewProtocol)]) {
+            continue;
+        }
+        
+        [self setPaneViewButtonsForViewController:(UIViewController <KMHPaneViewProtocol> *)viewController];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -88,30 +182,56 @@
     [self presentViewController:self.threePaneViewController animated:NO completion:nil];
 }
 
+#pragma mark // Private Methods (Observers) //
+
+- (void)addObserversToNavigationController:(UINavigationController *)navigationController {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationControllerWillPushViewController:) name:UINavigationControllerWillPushViewController object:navigationController];
+}
+
+- (void)removeObserversFromNavigationController:(UINavigationController *)navigationController {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UINavigationControllerWillPushViewController object:navigationController];
+}
+
+#pragma mark // Private Methods (Responders) //
+
+- (void)navigationControllerWillPushViewController:(NSNotification *)notification {
+    UIViewController *viewController = notification.userInfo[UINavigationControllerNotificationObjectKey];
+    
+    if ([viewController conformsToProtocol:@protocol(KMHPaneViewProtocol)]) {
+        [self setPaneViewButtonsForViewController:(UIViewController <KMHPaneViewProtocol> *)viewController];
+    }
+}
+
+#pragma mark // Private Methods (Other) //
+
+- (void)setPaneViewButtonsForViewController:(UIViewController <KMHPaneViewProtocol> *)viewController {
+    if (viewController.sideViewButton) {
+        viewController.sideViewButton.target = self.threePaneViewController;
+        viewController.sideViewButton.action = @selector(toggleSideView:);
+    }
+    if (viewController.topViewButton) {
+        viewController.topViewButton.target = self.threePaneViewController;
+        viewController.topViewButton.action = @selector(toggleTopView:);
+    }
+}
+
 @end
 
-//#pragma mark - // KMHPaneViewController //
-//
-//#pragma mark Public Interface
-//
-//@interface KMHPaneViewController : UIViewController <KMHPaneViewProtocol>
-//@property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
-//@property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
-//@end
-//
-//#pragma mark Implementation
-//
-//@implementation KMHPaneViewController
-//
-//#pragma mark // Inits and Loads //
-//
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//    
-//    self.navigationItem.leftItemsSupplementBackButton = YES;
-//}
-//
-//@end
+#pragma mark - // KMHPaneViewController //
+
+#pragma mark Implementation
+
+@implementation KMHPaneViewController
+
+#pragma mark // Inits and Loads //
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+}
+
+@end
 
 #pragma mark - // UIView (Custom) //
 
@@ -373,8 +493,6 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationBar.items = @[self.navigationItem];
-    
     [self.mainViewContainer fillWithView:self.mainView];
     [self.sideViewContainer fillWithView:self.sideView];
     [self.topViewContainer fillWithView:self.topView];
@@ -491,7 +609,7 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
             [self.verticalScrollView setContentOffset:CGPointMake(self.verticalScrollView.contentOffset.x, fmaxf(self.verticalScrollView.contentOffset.y, -1.0f*self.verticalScrollView.contentInset.top))];
         }
         if (!self.bouncesBottom) {
-            [self.verticalScrollView setContentOffset:CGPointMake(self.verticalScrollView.contentOffset.x, fminf(self.verticalScrollView.contentOffset.y, CGRectGetMinY(self.navigationBar.frame)-self.verticalScrollView.contentInset.top))];
+            [self.verticalScrollView setContentOffset:CGPointMake(self.verticalScrollView.contentOffset.x, fminf(self.verticalScrollView.contentOffset.y, CGRectGetMinY(self.mainViewContainer.frame)-self.verticalScrollView.contentInset.top))];
         }
     }
 }
@@ -505,7 +623,7 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
     }
     if ([scrollView isEqual:self.verticalScrollView] && self.verticalScrollView.isScrollEnabled) {
         BOOL topViewOpen = [self directionForVelocity:velocity.y withMinimum:40.0f andPosition:targetContentOffset->y/(self.verticalScrollView.contentSize.height-CGRectGetHeight(self.verticalScrollView.frame))];
-        CGFloat offset = topViewOpen ? 0.0f-self.verticalScrollView.contentInset.top : CGRectGetMinY(self.navigationBar.frame);
+        CGFloat offset = topViewOpen ? 0.0f-self.verticalScrollView.contentInset.top : CGRectGetMinY(self.mainViewContainer.frame);
         *targetContentOffset = CGPointMake(targetContentOffset->x, offset);
         [self setTopViewOpen:topViewOpen withAnimationDuration:ThreePaneAnimationDurationFast completion:nil];
     }
@@ -635,7 +753,7 @@ NSTimeInterval const ThreePaneAnimationDurationSlow = 0.25f;
     if (self.delegate && [self.delegate respondsToSelector:@selector(threePaneViewWillChangePosition:)]) {
         [self.delegate threePaneViewWillChangePosition:self];
     }
-    CGFloat contentOffsetY = topViewOpen ? 0.0f : CGRectGetMinY(self.navigationBar.frame);
+    CGFloat contentOffsetY = topViewOpen ? 0.0f : CGRectGetMinY(self.mainViewContainer.frame);
     [UIView animateWithDuration:animationDuration animations:^{
         self.verticalScrollView.contentOffset = CGPointMake(self.verticalScrollView.contentOffset.x, contentOffsetY-self.verticalScrollView.contentInset.top);
     } completion:^(BOOL finished) {

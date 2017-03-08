@@ -12,11 +12,21 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - // KMHPaneViewProtocol //
+
+#pragma mark Protocol
+
+@protocol KMHPaneViewProtocol <NSObject>
+@optional
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
+@end
+
 #pragma mark - // InitialViewController //
 
 #pragma mark Public Interface
 
-@interface InitialViewController : UIViewController
+@interface InitialViewController : UIViewController <KMHPaneViewProtocol>
 @property (nonatomic, strong) IBOutlet UIViewController *mainViewController;
 @property (nonatomic, strong) IBOutlet UIViewController *sideViewController;
 @property (nonatomic, strong) IBOutlet UIViewController *topViewController;
@@ -24,15 +34,14 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
 @end
 
-//#pragma mark - // KMHPaneViewProtocol //
-//
-//#pragma mark Protocol
-//
-//@protocol KMHPaneViewProtocol <NSObject>
-//@optional
-//@property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
-//@property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
-//@end
+#pragma mark - // KMHPaneViewController //
+
+#pragma mark Public Interface
+
+@interface KMHPaneViewController : UIViewController <KMHPaneViewProtocol>
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
+@end
 
 #pragma mark - // ThreePaneViewController //
 
@@ -57,7 +66,7 @@
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) IBOutlet UIScrollView *horizontalScrollView;
 @property (nonatomic, strong) IBOutlet UIScrollView *verticalScrollView;
-@property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
+//@property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *sideViewButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *topViewButton;
 @property (nonatomic, getter=sideViewIsOpen) BOOL sideViewOpen;
